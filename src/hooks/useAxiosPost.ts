@@ -2,7 +2,7 @@ import { useRequest } from 'ahooks'
 import type { Options, Result } from 'ahooks/lib/useRequest/src/types'
 import axios from '../api/tours'
 
-const HOST: string = "https://api.example.com"
+const HOST: string = "https://tours-be.fly.dev/api/v1"
 
 
 function useAxiosPost<TData, TParams extends any[]> (
