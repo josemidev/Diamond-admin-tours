@@ -3,7 +3,7 @@ import FormSignIn from "../../UI/FormSignIn";
 export default function SignIn() {
   return (
     <div className="flex h-screen">
-      <div className="w-9/12 hidden md:!block">
+      <div className="w-10/12 hidden md:!block">
         <div className='!h-full !bg-[url(/images/SignIn.webp)] bg-center bg-no-repeat'>
         </div>
       </div>
