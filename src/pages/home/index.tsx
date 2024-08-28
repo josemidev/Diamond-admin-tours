@@ -1,7 +1,12 @@
+import Navbar from "../../components/Navbar"
+import Sidebar from "../../components/Sidebar"
 
 function index() {
   return (
-    <div style={{ backgroundColor: 'red'}}>home</div>
+    <>
+      <Navbar />
+      <Sidebar />
+    </>
   )
 }
 
