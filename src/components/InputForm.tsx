@@ -12,9 +12,9 @@ export default function InputForm({ formName, label, type, ...props }: InputForm
       {label && <p className="text-[14px] text-[#000000] ml-1 text-start">{label} *</p>}
       <Form.Item name={formName} noStyle required>
         {type === 'password' ?
-          <Input.Password placeholder="Type here" {...props} />
+          <Input.Password placeholder="Escribe aquí" {...props} />
           :
-          <Input placeholder="Type here" {...props} />
+          <Input placeholder="Escribe aquí" {...props} />
         }
       </Form.Item>
     </section>
