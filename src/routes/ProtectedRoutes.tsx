@@ -7,12 +7,11 @@ interface ProtectedRouteProps {
   children?: React.ReactNode;
 }
 
-export default function ProtectedRoute  ({
-  redirectTo = "/singin",
+export default function ProtectedRoute({
+  redirectTo = "/SignIn",
   children,
 }: ProtectedRouteProps) {
-const access_token = useAuthorizationState.getState().access_token;
-console.log("🚀 ~ access_token:", access_token)
+  const access_token = useAuthorizationState.getState().access_token;
 
   if (!access_token) {
     return <Navigate to={redirectTo} replace />;
