@@ -4,14 +4,15 @@ import ReactDOM from "react-dom/client";
 import App from './App.tsx';
 import './index.css';
 import queryClient from "./services/queryClioent.ts";
-import { ConfigProvider, theme } from "antd";
+import { ConfigProvider } from "antd";
+import theme from '../theme.ts'
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ConfigProvider prefixCls="ant" theme={theme}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider prefixCls="ant" theme={theme}>
         <App />
-      </QueryClientProvider>
-    </ConfigProvider>
+      </ConfigProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
