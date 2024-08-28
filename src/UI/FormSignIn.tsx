@@ -1,5 +1,6 @@
 import { Form } from "antd";
 import InputForm from "../components/InputForm";
+import { MailFilled } from "@ant-design/icons";
 
 export default function FormSignIn() {
   const onFinish = (values: any) => {
@@ -7,8 +8,8 @@ export default function FormSignIn() {
   }
 
   return (
-    <div className="my-auto px-5 md:px-0">
-      <div className="bg-white p-8 rounded-3xl">
+    <>
+      <div className="rounded-3xl p-5 transition duration-300 bg-white my-auto lg:bg-transparent lg:h-screen flex flex-col justify-center mx-auto w-full lg:max-w-2xl">
         <h1 className="text-diamondPrimary text-[36px] font-extrabold">
           Iniciar sesión
         </h1>
@@ -20,6 +21,7 @@ export default function FormSignIn() {
             <InputForm
               label="Email"
               formName="email"
+              prefix={<MailFilled style={{ color: '#9D9D9D' }} />}
             />
             <InputForm
               type='password'
@@ -31,11 +33,11 @@ export default function FormSignIn() {
             <button
               className="bg-[#3655A0] px-11 h-10 rounded-lg text-white w-fit hover:!bg-[#4a6bb0]"
               type='submit'>
-              Reserve
+              Ingresar
             </button>
           </section>
         </Form>
       </div>
-    </div>
+    </>
   )
 }
