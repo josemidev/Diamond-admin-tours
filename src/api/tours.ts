@@ -3,15 +3,8 @@ import { useAuthorizationState } from '../store/authorization';
 
 
 const DiamondAxios = axios.create();
+const access_token = useAuthorizationState.getState().access_token;
 // const accessToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoiNjZiNTNlYjUwNzViYzc4NzQzZDExOThlIiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNzI0NTUwNjQyLCJleHAiOjE3MjQ2MzcwNDJ9.4uOFMqkathaC4ngHFN6HKKIH4oYG6YG14k_4S491t5Q';
-
-
-// const accessToken  = useAuthorizationState();
-const useAccessToken = () => {
-  const { access_token }: { access_token: string } = useAuthorizationState() as { access_token: string };
-  
-  return access_token;
-}
 
 DiamondAxios.interceptors.request.use(
   
@@ -19,7 +12,7 @@ DiamondAxios.interceptors.request.use(
     config.headers = {
       ...config.headers,
       Accept: 'application/json',
-      Authorization: `Bearer ${useAccessToken()}`,
+      Authorization: `Bearer ${access_token}`,
     };
     return config;
   },
