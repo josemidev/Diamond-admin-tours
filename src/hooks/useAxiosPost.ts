@@ -4,13 +4,14 @@ import axios from '../api/tours'
 
 const HOST: string = "https://tours-be.fly.dev/api/v1"
 
-
-function useAxiosPost<TData, TParams extends any[]> (
+function useAxiosPost<TData, TParams extends [body: unknown]> (
   pathname: string,
   config: Options<TData, TParams>
 ): Result<TData, TParams> {
   const { cancel, data, error, loading, mutate, params, refresh, refreshAsync, run, runAsync } =
-    useRequest(async (body): Promise<TData> => await axios.post(`${HOST}${pathname}`, body, {}), {
+    useRequest(async (body: TParams[0]): Promise<TData> => {
+      return await axios.post(`${HOST}${pathname}`, body, {})
+    }, {
       manual: true,
       ...config
     })
