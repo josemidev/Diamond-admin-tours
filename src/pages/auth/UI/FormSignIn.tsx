@@ -3,7 +3,8 @@ import { Form } from "antd";
 import InputForm from "@/components/InputForm";
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { useAuthorizationState } from "@/store/authorization";
-import { MailFilled } from "@ant-design/icons";
+import { type SignInRequest, type SignInResponse } from "@/types/authSignInTypes";
+import { UserAddOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 export default function FormSignIn() {
@@ -14,20 +15,17 @@ export default function FormSignIn() {
 
   const action = useAxiosPost('/auth/login', {
     manual: true,
-    onError: (e) => {
+    onError: (e) : void => {
       const mgs = e
       console.log(mgs)
-      // AlertError(mgs)
     },
-    onSuccess: (data: unknown) => {
-      const mgs = data?.data?.data?.access_token
-      console.log(mgs)
-      addAccesToken(mgs)
+    onSuccess: ({data}: {data: SignInResponse}): void => {
+      addAccesToken(data?.data?.access_token)
       navigate("/")
     }
   })
 
-  function onFinish(values: { username: string, password: string }): void {
+  function onFinish(values: SignInRequest): void {
     const { username, password } = values;
     action.run({
       username,
@@ -35,8 +33,8 @@ export default function FormSignIn() {
     })
   }
 
-  // user admin
-  //  contraseña pyh*4Vw2
+  // user: admin
+  // contraseña: pyh*4Vw2
 
   return (
     <>
@@ -50,9 +48,9 @@ export default function FormSignIn() {
         >
           <section className="mt-6 flex flex-col gap-[22px]">
             <InputForm
-              label="Email"
+              label="Usuario"
               formName="username"
-              prefix={<MailFilled style={{ color: '#9D9D9D' }} />}
+              prefix={<UserAddOutlined style={{ color: '#9D9D9D' }} />}
             />
             <InputForm
               type='password'
