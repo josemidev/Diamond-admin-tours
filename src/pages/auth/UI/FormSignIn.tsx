@@ -2,9 +2,15 @@ import { Form } from "antd";
 
 import InputForm from "@/components/InputForm";
 import useAxiosPost from "@/hooks/useAxiosPost";
+import { useAuthorizationState } from "@/store/authorization";
 import { MailFilled } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 export default function FormSignIn() {
+  const navigate = useNavigate();
+  const addAccesToken = useAuthorizationState(
+    (state) => state.addAccesToken
+  );
 
   const action = useAxiosPost('/auth/login', {
     manual: true,
@@ -14,8 +20,10 @@ export default function FormSignIn() {
       // AlertError(mgs)
     },
     onSuccess: (data: unknown) => {
-      const mgs = data
+      const mgs = data?.data?.data?.access_token
       console.log(mgs)
+      addAccesToken(mgs)
+      navigate("/")
       // refresh()
       // AlertSuccess('la billetera se ha registrado exitosamente')
     }
