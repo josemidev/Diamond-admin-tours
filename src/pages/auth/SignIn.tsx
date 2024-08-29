@@ -1,4 +1,4 @@
-import FormSignIn from "../../UI/FormSignIn";
+import FormSignIn from "./UI/FormSignIn";
 
 export default function SignIn() {
   return (
