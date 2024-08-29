@@ -24,8 +24,6 @@ export default function FormSignIn() {
       console.log(mgs)
       addAccesToken(mgs)
       navigate("/")
-      // refresh()
-      // AlertSuccess('la billetera se ha registrado exitosamente')
     }
   })
 
