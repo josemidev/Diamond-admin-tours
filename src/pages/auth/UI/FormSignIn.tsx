@@ -1,5 +1,6 @@
 import { Form } from "antd";
-import InputForm from "../components/InputForm";
+
+import InputForm from "@/components/InputForm";
 import { MailFilled } from "@ant-design/icons";
 
 export default function FormSignIn() {
