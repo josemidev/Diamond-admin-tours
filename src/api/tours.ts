@@ -1,19 +1,18 @@
-import axios from 'axios';
+import axios, { AxiosRequestHeaders } from 'axios';
 import { useAuthorizationState } from '../store/authorization';
 
 
 const DiamondAxios = axios.create();
 const access_token = useAuthorizationState.getState().access_token;
-// const accessToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoiNjZiNTNlYjUwNzViYzc4NzQzZDExOThlIiwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNzI0NTUwNjQyLCJleHAiOjE3MjQ2MzcwNDJ9.4uOFMqkathaC4ngHFN6HKKIH4oYG6YG14k_4S491t5Q';
 
 DiamondAxios.interceptors.request.use(
   
   async config => {
     config.headers = {
-      ...config.headers,
+      ...(config.headers as AxiosRequestHeaders),
       Accept: 'application/json',
       Authorization: `Bearer ${access_token}`,
-    };
+    } as AxiosRequestHeaders;
     return config;
   },
   error => {
