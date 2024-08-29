@@ -1,7 +1,6 @@
-import React from 'react'
-import Logo from '../assets/svg/logoColors.svg'
-import { Avatar } from "antd"
 import { UserOutlined } from "@ant-design/icons"
+import { Avatar } from "antd"
+import Logo from '../assets/svg/logoColors.svg'
 
 export default function Navbar() {
   return (
