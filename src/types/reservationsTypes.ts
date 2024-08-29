@@ -12,7 +12,13 @@ export interface Reservation {
 }
 
 export interface IReservationCardProps {
+  data?: Reservation;
   //Details
   item?: string;
   content?: string;
+}
+
+export interface IReservationDrawerProps {
+  children?: React.ReactNode;
+  data?: Reservation;
 }
