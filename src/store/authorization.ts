@@ -9,7 +9,7 @@ type authorizationState = {
 
   const useAuthorizationState  = create(
   persist<authorizationState>((set) => ({
-    access_token: '',
+    access_token: 'ss',
     addAccesToken: (id: string) =>
       set(() => ({ access_token:  id })),
     removeAccesToken:() => set({ access_token: '' })
