@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Tabs, TabsProps, Tooltip } from "antd"
+import AllReservation from '@/pages/home/UI/All'
 
 export default function Sidebar() {
   const [TAB, setTAB] = useState('all')
@@ -7,7 +8,7 @@ export default function Sidebar() {
     {
       key: 'all',
       label: <p className={`${TAB === 'all' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Todas Las Reservas</p>,
-      children: <p>Todas Las Reservas</p>
+      children: <AllReservation />
     },
     {
       key: 'archived',
@@ -48,7 +49,7 @@ export default function Sidebar() {
         setTAB(key)
       }}
       tabBarStyle={{ marginTop: 24 }}
-      style={{ height: '94vh', overflowY: 'auto' }}
+      style={{ height: '100vh', overflowY: 'auto' }}
     />
   )
 }

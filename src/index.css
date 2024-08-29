@@ -16,3 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.ant-tabs-left .ant-tabs-content-holder .ant-tabs-content .ant-tabs-tabpane {
+  padding-left: 0px !important;
+}
