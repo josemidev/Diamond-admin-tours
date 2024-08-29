@@ -51,7 +51,7 @@ export default function AllReservation() {
           <Select placeholder='Fecha de solicitud' />
         </section>
       </section>
-      <div className="grid grid-cols-4 mx-5 gap-5 mt-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 mx-5 gap-5 mt-10">
         {Object.keys(groupedData).map((status) => {
           const { bgColor, statusFormatted, textColor } = statusMap[status] || {};
           return (
@@ -59,7 +59,7 @@ export default function AllReservation() {
               <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted}</h1>
               {groupedData[status].map((item) => {
                 return (
-                  <ReservationCard />
+                  <ReservationCard data={item} />
                 );
               })}
             </section>
