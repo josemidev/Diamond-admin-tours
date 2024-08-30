@@ -8,6 +8,10 @@ const theme = {
     Button: {
       borderRadius: 8,
       colorPrimary: "#3655A0",
+      textHoverBg: "#FFFFFF",
+      defaultHoverColor: "transparent",
+      defaultHoverBorderColor: "#212121E0",
+      defaultHoverBg: "#F5F5F5",
     },
     Select: {
       controlHeight: 40,
