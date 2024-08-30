@@ -6,7 +6,7 @@ export interface Reservation {
   numberOfPersons: number;
   tourName: string;
   dateStartingTour: string;
-  status: string;
+  status: "unrevised" | "review" | "approved" | "rejected";
   orderNumber: string;
   changeHistory: unknown[];
 }
@@ -21,4 +21,8 @@ export interface IReservationCardProps {
 export interface IReservationDrawerProps {
   children?: React.ReactNode;
   data?: Reservation;
+}
+
+export interface IStatusCardProps {
+  status: "unrevised" | "review" | "approved" | "rejected";
 }
