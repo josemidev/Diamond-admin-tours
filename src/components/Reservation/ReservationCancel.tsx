@@ -29,17 +29,18 @@ export default function ReservationCancel({ children, data }: IReservationDrawer
         <section className="flex gap-x-4 mt-10">
           <Button
             onClick={handleCancel}
-            className=" w-full"
+            className="w-full hover:!text-diamondBlack1"
             size="large"
             type='default'
           >
             Cancelar
           </Button>
           <Button
-            className="rounded-md w-full bg-[#3655A0] text-white hover:!bg-[#4a6bb0]"
+            type='primary'
+            className="rounded-md w-full text-white hover:!bg-[#4a6bb0]"
             size="large"
           >
-            Archivar
+            Cambiar estado
           </Button>
         </section>
       </Modal>

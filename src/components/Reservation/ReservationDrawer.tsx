@@ -5,6 +5,7 @@ import ReservationDetails from "./ReservationDetails";
 import { CloseOutlined, FolderAddOutlined, RetweetOutlined } from "@ant-design/icons";
 import ReservationChangeStatus from "./ReservationChangeStatus";
 import ReservationCancel from './ReservationCancel';
+import { InitialStatus } from '../Cards/StatusCard';
 
 export default function ReservationDrawer({ children, data }: IReservationDrawerProps) {
   const [open, setOpen] = React.useState(false);
@@ -25,15 +26,12 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
         width={700}
         onClose={onClose}
         open={open}
+        className='!overflow-y-auto lg:!h-[calc(100vh-0px)] xl:!h-[calc(100vh-0px)]'
       >
         <section className="flex flex-col justify-between h-full">
           <section>
             <section className="flex justify-between items-center">
-              <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
-                <p className="text-diamondBlack1 text-[12px] capitalize">
-                  {data?.status}
-                </p>
-              </section>
+              <InitialStatus status={data?.status} />
               <Button
                 onClick={onClose}
                 className="rounded-md border-border hover:!border-[#969696]"
@@ -65,27 +63,30 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
             </p>
             {/*  Activity array */}
           </section>
-          <section className="flex gap-x-4">
-            <ReservationCancel data={data}>
-              <Button
-                className=" w-full"
-                size="large"
-                type='default'
-                icon={<FolderAddOutlined style={{ fontSize: 16 }} />}
-              >
-                Cancelar Reservación
-              </Button>
-            </ReservationCancel>
-            <ReservationChangeStatus data={data}>
-              <Button
-                className="rounded-md w-full bg-[#3655A0] text-white hover:!bg-[#4a6bb0]"
-                size="large"
-                icon={<RetweetOutlined style={{ fontSize: 16 }} />}
-              >
-                Cambiar estado
-              </Button>
-            </ReservationChangeStatus>
-          </section>
+          {data?.status !== 'rejected' &&
+            <section className="flex gap-x-4">
+              <ReservationCancel data={data}>
+                <Button
+                  className=" w-full hover:!text-diamondBlack1"
+                  size="large"
+                  type='default'
+                  icon={<FolderAddOutlined style={{ fontSize: 16 }} />}
+                >
+                  Cancelar Reservación
+                </Button>
+              </ReservationCancel>
+              <ReservationChangeStatus data={data}>
+                <Button
+                  type='primary'
+                  className="rounded-md w-full text-white hover:!bg-[#4a6bb0]"
+                  size="large"
+                  icon={<RetweetOutlined style={{ fontSize: 16 }} />}
+                >
+                  Cambiar estado
+                </Button>
+              </ReservationChangeStatus>
+            </section>
+          }
         </section>
       </Drawer>
     </>

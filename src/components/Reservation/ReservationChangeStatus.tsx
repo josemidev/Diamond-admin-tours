@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Input, Modal } from "antd";
+import { Button, Input, Modal, Select } from "antd";
 import { IReservationDrawerProps } from "@/types/reservationsTypes";
 import { ArrowRightOutlined } from '@ant-design/icons';
+import { InitialStatus, NewStatus } from '../Cards/StatusCard';
 
 export default function ReservationChangeStatus({ children, data }: IReservationDrawerProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -28,19 +29,22 @@ export default function ReservationChangeStatus({ children, data }: IReservation
             ¿Quieres actualizar el estado de la solicitud de reserva con ID
             <span className='text-diamondPrimary'> {data?._id}</span>?
           </p>
-          <section className="flex gap-x-4 flex-wrap">
-            <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
-              <p className="text-diamondBlack1 text-[12px] capitalize">
-                {data?.status}
-              </p>
+          {(data?.status === 'unrevised' || data?.status === 'approved') &&
+            <section className="flex gap-x-4 flex-wrap">
+              <InitialStatus status={data?.status} />
+              <ArrowRightOutlined className='text-[#646464] text-[16px]' />
+              <NewStatus status={data?.status} />
             </section>
-            <ArrowRightOutlined className='text-[#646464] text-[16px]' />
-            <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
-              <p className="text-diamondBlack1 text-[12px] capitalize">
-                {data?.status}
-              </p>
-            </section>
-          </section>
+          }
+          {data?.status === 'review' &&
+            <Select
+              options={[
+                { value: 'approved', label: 'Aprobado' },
+                { value: 'rejected', label: 'Rechazado' },
+              ]}
+              placeholder='Nuevo estado'
+            />
+          }
           <Input.TextArea
             showCount
             rows={4}
@@ -52,14 +56,15 @@ export default function ReservationChangeStatus({ children, data }: IReservation
         <section className="flex gap-x-4 mt-10">
           <Button
             onClick={handleCancel}
-            className=" w-full"
+            className="w-full hover:!text-diamondBlack1"
             size="large"
             type='default'
           >
             Cancelar
           </Button>
           <Button
-            className="rounded-md w-full bg-[#3655A0] text-white hover:!bg-[#4a6bb0]"
+            type='primary'
+            className="rounded-md w-full text-white hover:!bg-[#4a6bb0]"
             size="large"
           >
             Cambiar estado
