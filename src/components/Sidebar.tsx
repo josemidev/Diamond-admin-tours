@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Tabs, TabsProps, Tooltip } from "antd"
 import AllReservation from '@/pages/home/UI/All'
+import Sider from 'antd/es/layout/Sider'
 
 export default function Sidebar() {
   const [TAB, setTAB] = useState('all')
@@ -42,13 +43,13 @@ export default function Sidebar() {
     <Tabs
       tabBarGutter={10}
       tabPosition="left"
-      defaultActiveKey="dashboard"
+      defaultActiveKey={TAB}
       activeKey={TAB}
       items={itemsTab}
       onChange={(key) => {
         setTAB(key)
       }}
-      tabBarStyle={{ marginTop: 24 }}
+      tabBarStyle={{ marginTop: 24, position: 'sticky', top: 0, left: 0, width: 180, overflowY: 'auto' }}
       style={{ height: '100vh', overflowY: 'auto' }}
     />
   )
