@@ -1,3 +1,4 @@
+import LogOut from "@/util/functions/logOut";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, type MenuProps } from "antd";
 import Logo from '../assets/svg/logoColors.svg';
@@ -12,6 +13,7 @@ export default function Navbar() {
         <Button
           className="text-red-500 hover:!text-red-700 hover:!font-semibold"
           type="link"
+          onClick={LogOut()}
         >
           Log Out
         </Button>
