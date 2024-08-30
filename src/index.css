@@ -20,3 +20,24 @@
 .ant-tabs-left .ant-tabs-content-holder .ant-tabs-content .ant-tabs-tabpane {
   padding-left: 0px !important;
 }
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar:window-inactive {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 10px;
+  width: 4px;
+  background-color: #ffffff1a;
+  border-radius: 2px;
+}
