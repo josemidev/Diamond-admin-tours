@@ -1,5 +1,5 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
-import { Reservation } from "@/types/reservationsTypes"
+import { Reservation, Tours } from "@/types/reservationsTypes"
 import { groupByStatus } from "@/util/utils"
 import { Select } from "antd";
 
@@ -47,8 +47,8 @@ export default function AllReservation() {
           Filtra por:
         </p>
         <section className="flex gap-x-6">
-          <Select placeholder='Nombre del tour' />
-          <Select placeholder='Fecha de solicitud' />
+          <Select options={Tours} className="!h-[32px] !w-[280px]" placeholder='Nombre del tour' />
+          <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
         </section>
       </section>
       <div className="grid grid-cols-2 lg:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-200px)]">
@@ -59,7 +59,7 @@ export default function AllReservation() {
               <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted}</h1>
               {groupedData[status].map((item) => {
                 return (
-                  <ReservationCard key={item._id} data={item} />
+                  <ReservationCard key={item._id} data={item} sx="mb-5" />
                 );
               })}
             </section>
