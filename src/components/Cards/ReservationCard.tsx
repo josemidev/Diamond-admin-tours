@@ -4,8 +4,9 @@ import { ArrowDownOutlined, CopyOutlined } from "@ant-design/icons"
 import ReservationDetails from "../Reservation/ReservationDetails"
 import { IReservationCardProps } from "@/types/reservationsTypes";
 import ReservationDrawer from "../Reservation/ReservationDrawer";
+import { InitialStatus } from "./StatusCard";
 
-export default function ReservationCard({ data }: IReservationCardProps) {
+export default function ReservationCard({ data, isSearching, sx }: IReservationCardProps) {
   const [copied, setCopied] = React.useState(false);
 
   const handleCopy = async () => {
@@ -26,7 +27,7 @@ export default function ReservationCard({ data }: IReservationCardProps) {
   }, [copied]);
 
   return (
-    <section className="bg-white rounded-t-lg px-3 py-4 mb-3 flex flex-col gap-y-6">
+    <section className={`bg-white rounded-t-lg px-3 py-4 flex flex-col gap-y-5 h-fit ${sx}`}>
       <section className="flex justify-between gap-x-3">
         <p className="text-diamondBlack3 font-bold text-[17px] leading-5">
           Punta Cana Tour Zip Line Park
@@ -41,11 +42,16 @@ export default function ReservationCard({ data }: IReservationCardProps) {
           </ReservationDrawer>
         </section>
       </section>
-      <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
-        <p className="text-diamondBlack1 text-[12px]">
-          {data?._id}
-        </p>
-        <CopyOutlined onClick={handleCopy} className="cursor-pointer ml-2 text-[#969696]" />
+      <section className="flex  gap-x-3">
+        <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
+          <p className="text-diamondBlack1 text-[12px]">
+            {data?._id}
+          </p>
+          <CopyOutlined onClick={handleCopy} className="cursor-pointer ml-2 text-[#969696]" />
+        </section>
+        {isSearching &&
+          <InitialStatus status={data?.status} />
+        }
       </section>
       <section className="flex flex-col gap-y-1">
         <ReservationDetails item="Cliente" content="Juan Perez" />
