@@ -4,6 +4,7 @@ import { IReservationDrawerProps } from "@/types/reservationsTypes";
 import ReservationDetails from "./ReservationDetails";
 import { CloseOutlined, FolderAddOutlined, RetweetOutlined } from "@ant-design/icons";
 import ReservationChangeStatus from "./ReservationChangeStatus";
+import ReservationCancel from './ReservationCancel';
 
 export default function ReservationDrawer({ children, data }: IReservationDrawerProps) {
   const [open, setOpen] = React.useState(false);
@@ -43,7 +44,7 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
             <p className="text-diamondBlack1 capitalize mt-3 text-[24px] font-bold">
               {data?.name}
             </p>
-            <div className="h-[2px] bg-[#D9D9D9] w-full my-5">
+            <div className="h-[1px] bg-[#D9D9D9] w-full my-5">
             </div>
             <section className="flex flex-col gap-y-2">
               <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
@@ -57,7 +58,7 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
               <ReservationDetails item="Fecha Inicio Del Tour" content="Aug 12, 2024" />
               <ReservationDetails item="Numero de personas" content="1" />
             </section>
-            <div className="h-[2px] bg-[#D9D9D9] w-full my-5">
+            <div className="h-[1px] bg-[#D9D9D9] w-full my-5">
             </div>
             <p className="capitalize divide-diamondBlack1 text-[14px] font-semibold">
               Toda la actividad
@@ -65,15 +66,17 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
             {/*  Activity array */}
           </section>
           <section className="flex gap-x-4">
-            <Button
-              className=" w-full"
-              size="large"
-              type='default'
-              icon={<FolderAddOutlined style={{ fontSize: 16 }} />}
-            >
-              Cancelar Reservación
-            </Button>
-            <ReservationChangeStatus>
+            <ReservationCancel data={data}>
+              <Button
+                className=" w-full"
+                size="large"
+                type='default'
+                icon={<FolderAddOutlined style={{ fontSize: 16 }} />}
+              >
+                Cancelar Reservación
+              </Button>
+            </ReservationCancel>
+            <ReservationChangeStatus data={data}>
               <Button
                 className="rounded-md w-full bg-[#3655A0] text-white hover:!bg-[#4a6bb0]"
                 size="large"
