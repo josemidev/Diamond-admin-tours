@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Tabs, TabsProps, Tooltip } from "antd"
 import AllReservation from '@/pages/home/UI/All'
-import Sider from 'antd/es/layout/Sider'
+import AllReservationArchived from '@/pages/home/UI/AllArchived'
+import SearchReservations from '@/pages/home/UI/SearchReservations'
 
 export default function Sidebar() {
-  const [TAB, setTAB] = useState('all')
+  const tab = localStorage.getItem('tab')
+  const [TAB, setTAB] = useState(tab || 'all')
   const itemsTab: TabsProps['items'] = [
     {
       key: 'all',
@@ -14,12 +16,12 @@ export default function Sidebar() {
     {
       key: 'archived',
       label: <p className={`${TAB === 'archived' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Archivados</p>,
-      children: <p>Archivados</p>
+      children: <AllReservationArchived />
     },
     {
       key: 'search',
       label: <p className={`${TAB === 'search' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Buscar Reservas</p>,
-      children: <p>Buscar Reservas</p>
+      children: <SearchReservations />
     },
     {
       key: 'clients',
@@ -48,9 +50,10 @@ export default function Sidebar() {
       items={itemsTab}
       onChange={(key) => {
         setTAB(key)
+        localStorage.setItem('tab', key)
       }}
       tabBarStyle={{ marginTop: 24, position: 'sticky', top: 0, left: 0, width: 180, overflowY: 'auto' }}
-      style={{ height: '100vh', overflowY: 'auto' }}
+      style={{ overflowY: 'auto', height: '100vh' }}
     />
   )
 }
