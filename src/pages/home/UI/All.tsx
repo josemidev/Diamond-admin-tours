@@ -1,6 +1,6 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
-import { Reservation, Tours } from "@/types/reservationsTypes"
-import { groupByStatus } from "@/util/utils"
+import { Reservation, Tours } from "@/types/reservationsTypes";
+import { groupByStatus } from "@/util/utils";
 import { Select } from "antd";
 
 export default function AllReservation() {
@@ -14,7 +14,7 @@ export default function AllReservation() {
   ];
 
   const groupedData = groupByStatus(data);
-  const statusMap = {
+  const statusMap: { [key: string]: { bgColor: string; statusFormatted: string; textColor: string } } = {
     unrevised: {
       bgColor: 'bg-[#F8F8F8]',
       statusFormatted: 'Sin Revisar',
