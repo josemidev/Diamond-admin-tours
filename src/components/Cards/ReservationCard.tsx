@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, message } from "antd"
+import { Button, message, notification } from "antd"
 import { ArrowDownOutlined, CopyOutlined } from "@ant-design/icons"
 import ReservationDetails from "../Reservation/ReservationDetails"
 import { IReservationCardProps } from "@/types/reservationsTypes";
 import ReservationDrawer from "../Reservation/ReservationDrawer";
 import { InitialStatus } from "./StatusCard";
+import { formatGivenDate } from "@/util/utils";
 
 export default function ReservationCard({ data, isSearching, sx }: IReservationCardProps) {
   const [copied, setCopied] = React.useState(false);
@@ -20,17 +21,21 @@ export default function ReservationCard({ data, isSearching, sx }: IReservationC
 
   React.useEffect(() => {
     if (copied) {
-      message.success('Copiado al portapapeles');
+      notification.success({
+        message: 'Copiado',
+        description: 'El ID de la reserva ha sido copiado al portapapeles',
+        placement: 'topRight'
+      });
       const timer = setTimeout(() => setCopied(false), 2000);
       return () => clearTimeout(timer);
     }
   }, [copied]);
 
   return (
-    <section className={`bg-white rounded-t-lg px-3 py-4 flex flex-col gap-y-5 h-fit ${sx}`}>
+    <section className={`bg-white rounded-t-lg px-3 py-4 flex flex-col gap-y-5 h-fit w-fit ${sx}`}>
       <section className="flex justify-between gap-x-3">
         <p className="text-diamondBlack3 font-bold text-[17px] leading-5">
-          Punta Cana Tour Zip Line Park
+          {data?.tourName}
         </p>
         <section className="flex h-full items-start">
           <ReservationDrawer data={data}>
@@ -54,11 +59,11 @@ export default function ReservationCard({ data, isSearching, sx }: IReservationC
         }
       </section>
       <section className="flex flex-col gap-y-1">
-        <ReservationDetails item="Cliente" content="Juan Perez" />
-        <ReservationDetails item="Email" content='manuelrdg@gmail.com' />
-        <ReservationDetails item="Telefono" content="3102311234" />
-        <ReservationDetails item="Fecha Inicio Del Tour" content="Aug 12, 2024" />
-        <ReservationDetails item="Numero de personas" content="1" />
+        <ReservationDetails item="Cliente" content={data?.name} />
+        <ReservationDetails item="Email" content={data?.email} />
+        <ReservationDetails item="Telefono" content={data?.phone} />
+        <ReservationDetails item="Fecha Inicio Del Tour" content={formatGivenDate(data?.dateStartingTour)} />
+        <ReservationDetails item="Numero de personas" content={data?.numberOfPersons} />
       </section>
     </section>
   )
