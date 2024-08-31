@@ -5,7 +5,7 @@ import { groupByStatus } from "@/util/utils"
 import { Select, Spin } from "antd";
 
 export default function AllReservationArchived() {
-  const { data, error, isLoading } = useGetArchived();
+  const { data, error, isLoading, refetch } = useGetArchived();
 
   const groupedData = groupByStatus(data?.data || []);
   const statusMap = {
@@ -52,15 +52,15 @@ export default function AllReservationArchived() {
           <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
         </section>
       </section>
-      <div className="grid grid-cols-2 lg:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-200px)]">
+      <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-200px)]">
         {Object.keys(groupedData).map((status) => {
           const { bgColor, statusFormatted, textColor } = statusMap[status] || {};
           return (
-            <section key={status} className={`rounded-[20px] p-3 pb-6 ${bgColor} w-fit`}>
+            <section key={status} className={`rounded-[20px] p-3 pb-6 ${bgColor}`}>
               <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted}</h1>
               {groupedData[status].map((item) => {
                 return (
-                  <ReservationCard key={item._id} data={item} sx="mb-5" />
+                  <ReservationCard key={item._id} data={item} sx="mb-5" refetch={refetch} isArchived />
                 );
               })}
             </section>

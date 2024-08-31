@@ -1,17 +1,26 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
+import useGetReservations from "@/hooks/useGetReservations";
 import { Reservation, Tours } from "@/types/reservationsTypes"
 import { SearchOutlined } from "@ant-design/icons";
-import { Input, Select } from "antd";
+import { Input, Select, Spin } from "antd";
+import React from "react";
 
 export default function SearchReservations() {
+  const { data, error, isLoading, refetch } = useGetReservations()
+  const [allData, setAllData] = React.useState<Reservation[]>([])
 
-  const data: Reservation[] = [
-    { _id: '1', name: 'Item 1', status: 'unrevised' },
-    { _id: '2', name: 'Item 2', status: 'review' },
-    { _id: '3', name: 'Item 3', status: 'approved' },
-    { _id: '4', name: 'Item 4', status: 'rejected' },
-    { _id: '5', name: 'Item 5', status: 'unrevised' },
-  ];
+  React.useEffect(() => {
+    if (data) {
+      setAllData(data.data)
+    }
+  }, [data])
+
+  if (isLoading) {
+    <Spin />
+  }
+  if (error) {
+    return <p>Error...</p>
+  }
 
   return (
     <>
@@ -25,13 +34,16 @@ export default function SearchReservations() {
           <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
         </section>
       </section>
-      <section className="grid grid-cols-2 xl:grid-cols-5 mr-5 gap-5 overflow-y-auto  bg-[#F8F8F8] p-5 w-full">
-        {data?.map((item) => {
-          return (
-            <ReservationCard key={item._id} data={item} isSearching />
-          );
-        })}
+      <section className="!h-screen bg-[#F8F8F8]">
+        <section className="grid grid-cols-2 lg:!grid-cols-3 xl:!grid-cols-4 mr-5 gap-5 overflow-y-auto p-5 w-full">
+          {allData?.map((item) => {
+            return (
+              <ReservationCard key={item._id} data={item} isSearching refetch={refetch} />
+            );
+          })}
+        </section>
       </section>
+
     </>
   )
 }
