@@ -9,3 +9,10 @@ export const groupByStatus = (data: Reservation[]) => {
     return acc;
   }, {} as Record<string, Reservation[]>);
 };
+
+export function formatGivenDate(inputDate: any) {
+  if (!inputDate) return inputDate
+  const options: any = { year: 'numeric', month: 'short', day: 'numeric' }
+  const formattedDate = new Date(inputDate).toLocaleDateString('en-US', options)
+  return formattedDate
+}
