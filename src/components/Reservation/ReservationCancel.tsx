@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Modal } from "antd";
+import { Button, Modal, notification } from "antd";
 import { IReservationDrawerProps } from "@/types/reservationsTypes";
+import useAxiosPut from "@/hooks/useAxiosPut";
 
 export default function ReservationCancel({ children, data }: IReservationDrawerProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -12,6 +13,32 @@ export default function ReservationCancel({ children, data }: IReservationDrawer
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const action = useAxiosPut(`/dashboard/archived/${data?._id}`, {
+    manual: true,
+    onError: (e): void => {
+      const mgs = e
+      notification.error({
+        message: 'Error',
+        description: mgs.message,
+        placement: 'topRight'
+      });
+    },
+    onSuccess: ({ data }: { data: any }): void => {
+      notification.success({
+        message: 'Success',
+        description: data.message,
+        placement: 'topRight'
+      });
+      setIsModalOpen(false);
+    }
+  })
+
+  function onFinish(): void {
+    action.run({
+      id: data?._id
+    })
+  }
 
   return (
     <>
@@ -36,6 +63,8 @@ export default function ReservationCancel({ children, data }: IReservationDrawer
             Cancelar
           </Button>
           <Button
+            loading={action.loading}
+            onClick={onFinish}
             type='primary'
             className="rounded-md w-full text-white hover:!bg-[#4a6bb0]"
             size="large"
