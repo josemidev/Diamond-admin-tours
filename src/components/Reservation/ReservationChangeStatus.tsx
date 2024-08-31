@@ -5,7 +5,7 @@ import { ArrowRightOutlined } from '@ant-design/icons';
 import { InitialStatus, NewStatus } from '../Cards/StatusCard';
 import useAxiosPut from "@/hooks/useAxiosPut";
 
-export default function ReservationChangeStatus({ children, data }: IReservationDrawerProps) {
+export default function ReservationChangeStatus({ children, data, refetch }: IReservationDrawerProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const showModal = () => {
@@ -33,13 +33,20 @@ export default function ReservationChangeStatus({ children, data }: IReservation
         placement: 'topRight'
       });
       setIsModalOpen(false);
+      refetch && refetch()
     }
   })
 
   function onFinish(values: { newStatus: string, observations: string }): void {
     const { newStatus, observations } = values;
+
+    const nextStatus: Record<string, string> = {
+      unrevised: 'review',
+      approved: 'rejected',
+    };
+
     action.run({
-      status: data?.status === 'unrevised' ? 'review' : data?.status === 'approved' ? 'rejected' : newStatus,
+      status: nextStatus[data?.status] || newStatus,
       observations
     })
   }

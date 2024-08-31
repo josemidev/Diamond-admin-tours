@@ -3,7 +3,7 @@ import { Button, Modal, notification } from "antd";
 import { IReservationDrawerProps } from "@/types/reservationsTypes";
 import useAxiosPut from "@/hooks/useAxiosPut";
 
-export default function ReservationCancel({ children, data }: IReservationDrawerProps) {
+export default function ReservationCancel({ children, data, refetch }: IReservationDrawerProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const showModal = () => {
@@ -31,6 +31,7 @@ export default function ReservationCancel({ children, data }: IReservationDrawer
         placement: 'topRight'
       });
       setIsModalOpen(false);
+      refetch && refetch()
     }
   })
 
@@ -47,7 +48,7 @@ export default function ReservationCancel({ children, data }: IReservationDrawer
       </section>
       <Modal open={isModalOpen} onCancel={handleCancel} footer closable={false}>
         <p className="text-diamondBlack3 capitalize mt-3 text-[24px] font-bold">
-          {data?.name}
+          {data?.tourName}
         </p>
         <p className='text-[14px] text-[#646464] mt-2'>
           ¿Quieres archivar solicitud de reserva con ID

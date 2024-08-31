@@ -8,7 +8,7 @@ import ReservationCancel from './ReservationCancel';
 import { InitialStatus } from '../Cards/StatusCard';
 import { formatGivenDate } from "@/util/utils";
 
-export default function ReservationDrawer({ children, data }: IReservationDrawerProps) {
+export default function ReservationDrawer({ children, data, refetch, isArchived }: IReservationDrawerProps) {
   const [open, setOpen] = React.useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -66,7 +66,7 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
               return (
                 <section key={index} className="flex flex-col gap-y-2 mt-3">
                   <section className="flex gap-x-2 items-center text-[#646464]">
-                    <p className="!text-[13px]">
+                    <p className="!text-[13px] capitalize">
                       {item?.description}
                     </p>
                     ·
@@ -78,9 +78,9 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
               )
             })}
           </section>
-          {data?.status !== 'rejected' &&
-            <section className="flex gap-x-4">
-              <ReservationCancel data={data}>
+          <section className="flex gap-x-4">
+            {!isArchived &&
+              <ReservationCancel data={data} refetch={refetch}>
                 <Button
                   className=" w-full hover:!text-diamondBlack1"
                   size="large"
@@ -90,7 +90,9 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
                   Archivar
                 </Button>
               </ReservationCancel>
-              <ReservationChangeStatus data={data}>
+            }
+            {!isArchived && data?.status !== 'rejected' &&
+              <ReservationChangeStatus data={data} refetch={refetch}>
                 <Button
                   type='primary'
                   className="rounded-md w-full text-white hover:!bg-[#4a6bb0]"
@@ -100,8 +102,8 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
                   Cambiar estado
                 </Button>
               </ReservationChangeStatus>
-            </section>
-          }
+            }
+          </section>
         </section>
       </Drawer>
     </>
