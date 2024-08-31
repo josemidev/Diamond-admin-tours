@@ -1,13 +1,22 @@
 import { Reservation } from "../types/reservationsTypes";
 
 export const groupByStatus = (data: Reservation[]) => {
-  return data.reduce((acc, item) => {
+  const grouped = data.reduce((acc, item) => {
     if (!acc[item.status]) {
       acc[item.status] = [];
     }
     acc[item.status].push(item);
     return acc;
   }, {} as Record<string, Reservation[]>);
+
+  const order = ['unrevised', 'review', 'approved', 'rejected'];
+  const orderedGrouped: Record<string, Reservation[]> = {};
+  order.forEach(status => {
+    if (grouped[status]) {
+      orderedGrouped[status] = grouped[status];
+    }
+  });
+  return orderedGrouped;
 };
 
 export function formatGivenDate(inputDate: any) {
