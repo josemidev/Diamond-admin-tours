@@ -19,7 +19,7 @@ export default function FormSignIn() {
       const mgs = e
       console.log(mgs)
     },
-    onSuccess: ({data}: {data: SignInResponse}): void => {
+    onSuccess: ({data}: {data: SignInResponse} ): void => {
       addAccesToken(data?.data?.access_token)
       navigate("/")
     }
