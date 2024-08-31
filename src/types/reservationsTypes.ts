@@ -8,7 +8,7 @@ export interface Reservation {
   dateStartingTour: string;
   status: "unrevised" | "review" | "approved" | "rejected";
   orderNumber: string;
-  changeHistory: unknown[];
+  changeHistory: { date: string; description: string }[];
 }
 
 export interface IReservationCardProps {
@@ -17,7 +17,7 @@ export interface IReservationCardProps {
   sx?: string;
   //Details
   item?: string;
-  content?: string;
+  content?: string | number | undefined;
 }
 
 export interface IReservationDrawerProps {
