@@ -6,6 +6,7 @@ import { CloseOutlined, FolderAddOutlined, RetweetOutlined } from "@ant-design/i
 import ReservationChangeStatus from "./ReservationChangeStatus";
 import ReservationCancel from './ReservationCancel';
 import { InitialStatus } from '../Cards/StatusCard';
+import { formatGivenDate } from "@/util/utils";
 
 export default function ReservationDrawer({ children, data }: IReservationDrawerProps) {
   const [open, setOpen] = React.useState(false);
@@ -40,7 +41,7 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
               />
             </section>
             <p className="text-diamondBlack1 capitalize mt-3 text-[24px] font-bold">
-              {data?.name}
+              {data?.tourName}
             </p>
             <div className="h-[1px] bg-[#D9D9D9] w-full my-5">
             </div>
@@ -50,18 +51,32 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
                   {data?._id}
                 </p>
               </section>
-              <ReservationDetails item="Cliente" content="Juan Perez" />
-              <ReservationDetails item="Email" content='manuelrdg@gmail.com' />
-              <ReservationDetails item="Telefono" content="3102311234" />
-              <ReservationDetails item="Fecha Inicio Del Tour" content="Aug 12, 2024" />
-              <ReservationDetails item="Numero de personas" content="1" />
+              <ReservationDetails item="Cliente" content={data?.name} />
+              <ReservationDetails item="Email" content={data?.email} />
+              <ReservationDetails item="Telefono" content={data?.phone} />
+              <ReservationDetails item="Fecha Inicio Del Tour" content={formatGivenDate(data?.dateStartingTour)} />
+              <ReservationDetails item="Numero de personas" content={data?.numberOfPersons} />
             </section>
             <div className="h-[1px] bg-[#D9D9D9] w-full my-5">
             </div>
-            <p className="capitalize divide-diamondBlack1 text-[14px] font-semibold">
+            <p className="capitalize text-[14px] font-semibold">
               Toda la actividad
             </p>
-            {/*  Activity array */}
+            {data?.changeHistory?.map((item, index) => {
+              return (
+                <section key={index} className="flex flex-col gap-y-2 mt-3">
+                  <section className="flex gap-x-2 items-center text-[#646464]">
+                    <p className="!text-[13px]">
+                      {item?.description}
+                    </p>
+                    ·
+                    <p className="!text-[13px]">
+                      {item?.date}
+                    </p>
+                  </section>
+                </section>
+              )
+            })}
           </section>
           {data?.status !== 'rejected' &&
             <section className="flex gap-x-4">
@@ -72,7 +87,7 @@ export default function ReservationDrawer({ children, data }: IReservationDrawer
                   type='default'
                   icon={<FolderAddOutlined style={{ fontSize: 16 }} />}
                 >
-                  Cancelar Reservación
+                  Archivar
                 </Button>
               </ReservationCancel>
               <ReservationChangeStatus data={data}>
