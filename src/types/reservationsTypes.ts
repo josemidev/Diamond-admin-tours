@@ -14,7 +14,9 @@ export interface Reservation {
 export interface IReservationCardProps {
   data?: Reservation;
   isSearching?: boolean;
+  isArchived?: boolean;
   sx?: string;
+  refetch?: () => void;
   //Details
   item?: string;
   content?: string | number | undefined;
@@ -23,6 +25,8 @@ export interface IReservationCardProps {
 export interface IReservationDrawerProps {
   children?: React.ReactNode;
   data?: Reservation;
+  refetch?: () => void;
+  isArchived?: boolean;
 }
 
 export interface IStatusCardProps {
