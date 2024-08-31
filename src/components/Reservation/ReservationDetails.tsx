@@ -1,14 +1,14 @@
 import { IReservationCardProps } from "@/types/reservationsTypes";
+import { Typography } from 'antd'
 
 export default function ReservationDetails({ item, content }: IReservationCardProps) {
   return (
-    <section className="flex flex-wrap gap-x-[6px]">
-      <p className="text-diamondBlack1 font-semibold text-[14px] leading-5">
-        {item}
-      </p>
-      <p className="text-diamondBlack1 font-normal text-[14px] leading-5">
-        {content}
-      </p>
-    </section>
+    <>
+      <Typography.Paragraph
+        className="text-diamondBlack1 font-semibold !leading-4 !text-[14px]"
+      >
+        {item} <span className="font-normal"> {content}</span>
+      </Typography.Paragraph>
+    </>
   )
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, message, notification } from "antd"
+import { Button, notification } from "antd"
 import { ArrowDownOutlined, CopyOutlined } from "@ant-design/icons"
 import ReservationDetails from "../Reservation/ReservationDetails"
 import { IReservationCardProps } from "@/types/reservationsTypes";
@@ -7,7 +7,7 @@ import ReservationDrawer from "../Reservation/ReservationDrawer";
 import { InitialStatus } from "./StatusCard";
 import { formatGivenDate } from "@/util/utils";
 
-export default function ReservationCard({ data, isSearching, sx }: IReservationCardProps) {
+export default function ReservationCard({ data, isSearching, sx, refetch, isArchived }: IReservationCardProps) {
   const [copied, setCopied] = React.useState(false);
 
   const handleCopy = async () => {
@@ -32,13 +32,13 @@ export default function ReservationCard({ data, isSearching, sx }: IReservationC
   }, [copied]);
 
   return (
-    <section className={`bg-white rounded-t-lg px-3 py-4 flex flex-col gap-y-5 h-fit w-fit ${sx}`}>
+    <section className={`bg-white rounded-t-lg px-3 py-4 flex flex-col gap-y-5 h-fit w-full ${sx}`}>
       <section className="flex justify-between gap-x-3">
         <p className="text-diamondBlack3 font-bold text-[17px] leading-5">
           {data?.tourName}
         </p>
         <section className="flex h-full items-start">
-          <ReservationDrawer data={data}>
+          <ReservationDrawer data={data} refetch={refetch} isArchived={isArchived}>
             <Button
               className="rounded-md border-border hover:!border-[#969696]"
               size="small"
@@ -47,7 +47,7 @@ export default function ReservationCard({ data, isSearching, sx }: IReservationC
           </ReservationDrawer>
         </section>
       </section>
-      <section className="flex  gap-x-3">
+      <section className="flex gap-x-3 flex-wrap gap-y-1">
         <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
           <p className="text-diamondBlack1 text-[12px]">
             {data?._id}
@@ -58,7 +58,7 @@ export default function ReservationCard({ data, isSearching, sx }: IReservationC
           <InitialStatus status={data?.status} />
         }
       </section>
-      <section className="flex flex-col gap-y-1">
+      <section className="flex flex-col flex-wrap">
         <ReservationDetails item="Cliente" content={data?.name} />
         <ReservationDetails item="Email" content={data?.email} />
         <ReservationDetails item="Telefono" content={data?.phone} />
