@@ -25,7 +25,7 @@ export default function Navbar() {
       <img src={Logo} alt="logo" />
       <section className="flex gap-x-3 items-center">
         <p className="text-diamondBlack1">
-          Hola, Jeison
+          Hola, <span className="font-semibold">Admin</span>
         </p>
         <Dropdown menu={{ items }}>
           <section className="flex justify-center items-center gap-x-2">
