@@ -8,7 +8,6 @@ export default function AllReservation() {
   const { data, error, isLoading, refetch } = useGetReservations()
 
   const groupedData = groupByStatus(data?.data || []);
-  console.log("🚀 ~ AllReservation ~ groupedData:", groupedData)
   const statusMap: { [key: string]: { bgColor: string; statusFormatted: string; textColor: string } } = {
     unrevised: {
       bgColor: 'bg-[#F8F8F8]',
