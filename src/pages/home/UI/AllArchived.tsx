@@ -1,19 +1,13 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
-import { Reservation, Tours } from "@/types/reservationsTypes"
+import useGetArchived from "@/hooks/useGetArchived";
+import { Tours } from "@/types/reservationsTypes"
 import { groupByStatus } from "@/util/utils"
-import { Select } from "antd";
+import { Select, Spin } from "antd";
 
 export default function AllReservationArchived() {
+  const { data, error, isLoading } = useGetArchived();
 
-  const data: Reservation[] = [
-    { _id: '1', name: 'Item 1', status: 'unrevised' },
-    { _id: '2', name: 'Item 2', status: 'review' },
-    { _id: '3', name: 'Item 3', status: 'approved' },
-    { _id: '4', name: 'Item 4', status: 'rejected' },
-    { _id: '5', name: 'Item 5', status: 'unrevised' },
-  ];
-
-  const groupedData = groupByStatus(data);
+  const groupedData = groupByStatus(data?.data || []);
   const statusMap = {
     unrevised: {
       bgColor: 'bg-[#F8F8F8]',
@@ -37,6 +31,13 @@ export default function AllReservationArchived() {
     },
   };
 
+  if (isLoading) {
+    <Spin />
+  }
+  if (error) {
+    return <p>Error...</p>
+  }
+
   return (
     <>
       <section className="ml-5 sticky top-0 w-full z-10">
@@ -59,7 +60,7 @@ export default function AllReservationArchived() {
               <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted}</h1>
               {groupedData[status].map((item) => {
                 return (
-                  <ReservationCard key={item._id} data={item} />
+                  <ReservationCard key={item._id} data={item} sx="mb-5" />
                 );
               })}
             </section>
