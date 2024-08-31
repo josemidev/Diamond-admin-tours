@@ -1,19 +1,13 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
-import { Reservation, Tours } from "@/types/reservationsTypes";
+import useGetReservations from "@/hooks/useGetReservations";
+import { Tours } from "@/types/reservationsTypes";
 import { groupByStatus } from "@/util/utils";
-import { Select } from "antd";
+import { Select, Spin } from "antd";
 
 export default function AllReservation() {
+  const { data, error, isLoading } = useGetReservations()
 
-  const data: Reservation[] = [
-    { _id: '1', name: 'Item 1', status: 'unrevised' },
-    { _id: '2', name: 'Item 2', status: 'review' },
-    { _id: '3', name: 'Item 3', status: 'approved' },
-    { _id: '4', name: 'Item 4', status: 'rejected' },
-    { _id: '5', name: 'Item 5', status: 'unrevised' },
-  ];
-
-  const groupedData = groupByStatus(data);
+  const groupedData = groupByStatus(data?.data || []);
   const statusMap: { [key: string]: { bgColor: string; statusFormatted: string; textColor: string } } = {
     unrevised: {
       bgColor: 'bg-[#F8F8F8]',
@@ -36,6 +30,13 @@ export default function AllReservation() {
       textColor: 'text-rejected',
     },
   };
+
+  if (isLoading) {
+    <Spin />
+  }
+  if (error) {
+    return <p>Error...</p>
+  }
 
   return (
     <>
