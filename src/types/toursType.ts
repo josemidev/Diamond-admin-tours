@@ -8,7 +8,7 @@ export interface ToursResponse {
   dateStartingTour: string
   archived: boolean
   status: string
-  changeHistory: { date: string; description: string }[]
+  changeHistory: { date: string; description: string }[]  
   createdAt: string
   updatedAt: string
 }
