@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Tabs, TabsProps, Tooltip } from "antd"
 import AllReservation from '@/pages/home/UI/All'
 import AllReservationArchived from '@/pages/home/UI/AllArchived'
 import SearchReservations from '@/pages/home/UI/SearchReservations'
+import { Tabs, TabsProps, Tooltip } from "antd"
+import { useState } from 'react'
 
 export default function Sidebar() {
   const tab = localStorage.getItem('tab')
@@ -53,7 +53,7 @@ export default function Sidebar() {
         localStorage.setItem('tab', key)
       }}
       tabBarStyle={{ marginTop: 24, position: 'sticky', top: 0, left: 0, width: 180, overflowY: 'auto' }}
-      style={{ overflowY: 'auto', height: '100vh' }}
+      style={{ overflowY: 'auto', height: '100%' }}
     />
   )
 }
