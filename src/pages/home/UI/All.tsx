@@ -52,7 +52,7 @@ export default function AllReservation() {
           <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
         </section>
       </section>
-      <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-260px)]">
+      <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)]">
         {Object.keys(groupedData).map((status) => {
           const { bgColor, statusFormatted, textColor } = statusMap[status] || {};
           return (

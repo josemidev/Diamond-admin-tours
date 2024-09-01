@@ -34,11 +34,11 @@ export default function SearchReservations() {
           <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
         </section>
       </section>
-      <section className="!h-screen bg-[#F8F8F8]">
-        <section className="grid grid-cols-2 lg:!grid-cols-3 xl:!grid-cols-4 mr-5 gap-5 overflow-y-auto p-5 w-full">
+      <section className="!h-[calc(100vh-250px)] bg-[#F8F8F8]">
+        <section className="grid grid-cols-2 lg:!grid-cols-3 xl:!grid-cols-4 mr-5 gap-5 overflow-y-auto h-[calc(100vh-250px)] p-5 w-full">
           {allData?.map((item) => {
             return (
-              <ReservationCard key={item._id} data={item} isSearching refetch={refetch} />
+              <ReservationCard key={item._id} data={item} isSearching refetch={refetch} sx="h-full" />
             );
           })}
         </section>
