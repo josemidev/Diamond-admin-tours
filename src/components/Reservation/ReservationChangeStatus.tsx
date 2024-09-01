@@ -97,6 +97,7 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
               name='observations'
             >
               <Input.TextArea
+                style={{ resize: 'none' }}
                 showCount
                 rows={4}
                 maxLength={200}
