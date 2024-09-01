@@ -9,6 +9,7 @@ export interface Reservation {
   status: "unrevised" | "review" | "approved" | "rejected";
   orderNumber: string;
   changeHistory: { date: string; description: string }[];
+  isArchived: boolean;
 }
 
 export interface IReservationCardProps {

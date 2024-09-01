@@ -37,7 +37,8 @@ export default function ReservationCancel({ children, data, refetch }: IReservat
 
   function onFinish(): void {
     action.run({
-      id: data?._id
+      id: data?._id,
+      isArchived: !data?.isArchived
     })
   }
 
@@ -51,7 +52,7 @@ export default function ReservationCancel({ children, data, refetch }: IReservat
           {data?.tourName}
         </p>
         <p className='text-[14px] text-[#646464] mt-2'>
-          ¿Quieres archivar solicitud de reserva con ID
+          ¿Quieres {data?.isArchived ? 'desarchivar' : 'archivar'}  solicitud de reserva con ID
           <span className='text-diamondPrimary'> {data?._id}</span>?
         </p>
         <section className="flex gap-x-4 mt-10">
@@ -70,7 +71,7 @@ export default function ReservationCancel({ children, data, refetch }: IReservat
             className="rounded-md w-full text-white hover:!bg-[#4a6bb0]"
             size="large"
           >
-            Cambiar estado
+            {data?.isArchived ? 'Desarchivar' : 'Archivar'}
           </Button>
         </section>
       </Modal>

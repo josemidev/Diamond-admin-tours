@@ -79,18 +79,16 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
             })}
           </section>
           <section className="flex gap-x-4">
-            {!isArchived &&
-              <ReservationCancel data={data} refetch={refetch}>
-                <Button
-                  className=" w-full hover:!text-diamondBlack1"
-                  size="large"
-                  type='default'
-                  icon={<FolderAddOutlined style={{ fontSize: 16 }} />}
-                >
-                  Archivar
-                </Button>
-              </ReservationCancel>
-            }
+            <ReservationCancel data={data} refetch={refetch}>
+              <Button
+                className=" w-full hover:!text-diamondBlack1"
+                size="large"
+                type='default'
+                icon={<FolderAddOutlined style={{ fontSize: 16 }} />}
+              >
+                {data?.isArchived ? 'Desarchivar' : 'Archivar'}
+              </Button>
+            </ReservationCancel>
             {!isArchived && data?.status !== 'rejected' &&
               <ReservationChangeStatus data={data} refetch={refetch}>
                 <Button
