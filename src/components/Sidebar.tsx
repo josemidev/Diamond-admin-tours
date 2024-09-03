@@ -1,5 +1,6 @@
 import AllReservation from '@/pages/home/UI/All'
 import AllReservationArchived from '@/pages/home/UI/AllArchived'
+import Clients from "@/pages/home/UI/Clients"
 import SearchReservations from '@/pages/home/UI/SearchReservations'
 import { Tabs, TabsProps, Tooltip } from "antd"
 import { useState } from 'react'
@@ -26,7 +27,7 @@ export default function Sidebar() {
     {
       key: 'clients',
       label: <p className={`${TAB === 'clients' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Clientes</p>,
-      children: <p>Clientes</p>
+      children: <Clients />
     },
     {
       key: 'metrics',
