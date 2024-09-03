@@ -57,7 +57,7 @@ export default function AllReservationArchived() {
           const { bgColor, statusFormatted, textColor } = statusMap[status] || {};
           return (
             <section key={status} className={`rounded-[20px] p-3 pb-6 ${bgColor}`}>
-              <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted}</h1>
+              <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted} ({groupedData[status].length})</h1>
               {groupedData[status].map((item) => {
                 return (
                   <ReservationCard key={item._id} data={item} sx="mb-5" refetch={refetch} isArchived />
