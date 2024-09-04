@@ -1,13 +1,13 @@
-import Navbar from "../../components/Navbar"
-import Sidebar from "../../components/Sidebar"
+import Navbar from "@/components/Navbar"
+import Sidebar from "@/components/Sidebar"
 
 function index() {
   return (
     <>
-      <section className="hidden md:block">
+      <div className="hidden md:flex flex-col h-screen">
         <Navbar />
         <Sidebar />
-      </section>
+      </div>
       <section className="flex justify-center items-center h-screen md:hidden">
         <p className="text-diamondBlack1 font-medium max-w-xs text-center leading-5">
           Dashboard disponible solo en pantallas grandes

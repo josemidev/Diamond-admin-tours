@@ -1,6 +1,8 @@
 import AllReservation from '@/pages/home/UI/All'
 import AllReservationArchived from '@/pages/home/UI/AllArchived'
+import Clients from "@/pages/home/UI/Clients"
 import SearchReservations from '@/pages/home/UI/SearchReservations'
+import Tours from "@/pages/home/UI/Tours"
 import { Tabs, TabsProps, Tooltip } from "antd"
 import { useState } from 'react'
 
@@ -26,7 +28,12 @@ export default function Sidebar() {
     {
       key: 'clients',
       label: <p className={`${TAB === 'clients' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Clientes</p>,
-      children: <p>Clientes</p>
+      children: <Clients />
+    },
+    {
+      key: 'tours',
+      label: <p className={`${TAB === 'tours' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Tours</p>,
+      children: <Tours />
     },
     {
       key: 'metrics',
@@ -53,7 +60,7 @@ export default function Sidebar() {
         localStorage.setItem('tab', key)
       }}
       tabBarStyle={{ marginTop: 24, position: 'sticky', top: 0, left: 0, width: 180, overflowY: 'auto' }}
-      style={{ overflowY: 'auto', height: '100%' }}
+      style={{ overflowY: 'auto', height: '100vh' }}
     />
   )
 }
