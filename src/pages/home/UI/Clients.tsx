@@ -1,7 +1,8 @@
 import { NewStatus } from "@/components/Cards/StatusCard";
 import useGetClients from "@/hooks/useGetClient";
-import { Reservation, Tours } from "@/types/reservationsTypes";
-import { Select, Spin, Table } from "antd";
+import { Reservation } from "@/types/reservationsTypes";
+import { SearchOutlined } from "@ant-design/icons";
+import { Input, Select, Spin, Table } from "antd";
 import React, { useMemo } from "react";
 
 export default function Clients() {
@@ -69,7 +70,7 @@ export default function Clients() {
           Clientes
         </h1>
         <section className="flex gap-x-4 mt-4">
-          <Select options={Tours} className="!h-[32px] !w-[280px]" placeholder='Buscar reserva' />
+          <Input className="!h-[32px] !w-fit" suffix={<SearchOutlined className="text-[14px] !w-fit" />} placeholder='Buscar Reserva' />
           <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
         </section>
       </section>
@@ -85,7 +86,6 @@ export default function Clients() {
           virtual={false}
           rowHoverable
           size="small"
-          className="!rounded-none"
           bordered={false}
           columns={columns}
           dataSource={clients || []}

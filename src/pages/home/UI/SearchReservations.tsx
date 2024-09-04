@@ -1,6 +1,7 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
+import { Tours } from "@/constants/data";
 import useGetReservations from "@/hooks/useGetReservations";
-import { Reservation, Tours } from "@/types/reservationsTypes"
+import { Reservation } from "@/types/reservationsTypes"
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, Select, Spin } from "antd";
 import React from "react";
@@ -43,7 +44,6 @@ export default function SearchReservations() {
           })}
         </section>
       </section>
-
     </>
   )
 }

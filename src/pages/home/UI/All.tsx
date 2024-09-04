@@ -1,6 +1,6 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
+import { Tours } from "@/constants/data";
 import useGetReservations from "@/hooks/useGetReservations";
-import { Tours } from "@/types/reservationsTypes";
 import { groupByStatus } from "@/util/utils";
 import { Select, Spin } from "antd";
 
