@@ -1,12 +1,12 @@
-import React from 'react'
-import { Button, Drawer } from "antd";
 import { IReservationDrawerProps } from "@/types/reservationsTypes";
-import ReservationDetails from "./ReservationDetails";
-import { CloseOutlined, FolderAddOutlined, RetweetOutlined } from "@ant-design/icons";
-import ReservationChangeStatus from "./ReservationChangeStatus";
-import ReservationCancel from './ReservationCancel';
-import { InitialStatus } from '../Cards/StatusCard';
 import { formatGivenDate } from "@/util/utils";
+import { CloseOutlined, FolderAddOutlined, RetweetOutlined } from "@ant-design/icons";
+import { Button, Drawer } from "antd";
+import React from 'react';
+import { InitialStatus } from '../Cards/StatusCard';
+import ReservationCancel from './ReservationCancel';
+import ReservationChangeStatus from "./ReservationChangeStatus";
+import ReservationDetails from "./ReservationDetails";
 
 export default function ReservationDrawer({ children, data, refetch, isArchived }: IReservationDrawerProps) {
   const [open, setOpen] = React.useState(false);
@@ -32,7 +32,7 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
         <section className="flex flex-col justify-between h-full">
           <section>
             <section className="flex justify-between items-center">
-              <InitialStatus status={data?.status} />
+              <InitialStatus status={data?.status || "unrevised"} />
               <Button
                 onClick={onClose}
                 className="rounded-md border-border hover:!border-[#969696]"

@@ -1,20 +1,25 @@
-import React, { useMemo } from "react";
-import { Button, Spin, Table } from "antd";
-import useGetTours from "@/hooks/useGetTours";
-import { ITours } from "@/types/reservationsTypes"
 import SetPriceTour from "@/components/ToursPrice";
+import useGetTours from "@/hooks/useGetTours";
+import { ITours } from "@/types/reservationsTypes";
 import { EditOutlined } from "@ant-design/icons";
+import { Breakpoint, Button, Spin, Table } from "antd";
+
+import React, { useMemo } from "react";
 
 export default function Tours() {
   const { data, error, isLoading, refetch } = useGetTours()
   const [allData, setAllData] = React.useState<ITours[]>([])
+  console.log("🚀 ~ Tours ~ allData:", allData)
 
   React.useEffect(() => {
     if (data) {
-      setAllData(data.data)
+      setAllData(data)
     }
   }, [data])
 
+  
+
+  
   const columns = [
     {
       title: 'Nombre',
@@ -30,7 +35,7 @@ export default function Tours() {
       title: '',
       dataIndex: 'actions',
       key: 'actions',
-      responsive: ['md'],
+      responsive: ['md'] as Breakpoint[],
     }
   ];
 
@@ -48,7 +53,7 @@ export default function Tours() {
         </SetPriceTour>
       )
     }
-  }), [allData])
+  }), [allData, refetch])
 
   if (isLoading) {
     <Spin />

@@ -1,9 +1,10 @@
-import React from 'react'
-import { Button, Form, Input, Modal, notification, Select } from "antd";
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import useAxiosPut from "@/hooks/useAxiosPut";
 import { IReservationDrawerProps } from "@/types/reservationsTypes";
 import { ArrowRightOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Modal, notification, Select } from "antd";
+import React from 'react';
 import { InitialStatus, NewStatus } from '../Cards/StatusCard';
-import useAxiosPut from "@/hooks/useAxiosPut";
 
 export default function ReservationChangeStatus({ children, data, refetch }: IReservationDrawerProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -46,7 +47,7 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
     };
 
     action.run({
-      status: nextStatus[data?.status] || newStatus,
+      status: nextStatus[data?.status ?? ''] || newStatus,
       observations
     })
   }

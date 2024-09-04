@@ -1,18 +1,18 @@
-import React from "react";
-import { Button, notification } from "antd"
-import { ArrowDownOutlined, CopyOutlined } from "@ant-design/icons"
-import ReservationDetails from "../Reservation/ReservationDetails"
 import { IReservationCardProps } from "@/types/reservationsTypes";
+import { formatGivenDate } from "@/util/utils";
+import { ArrowDownOutlined, CopyOutlined } from "@ant-design/icons";
+import { Button, notification } from "antd";
+import React from "react";
+import ReservationDetails from "../Reservation/ReservationDetails";
 import ReservationDrawer from "../Reservation/ReservationDrawer";
 import { InitialStatus } from "./StatusCard";
-import { formatGivenDate } from "@/util/utils";
 
 export default function ReservationCard({ data, isSearching, sx, refetch, isArchived }: IReservationCardProps) {
   const [copied, setCopied] = React.useState(false);
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(data?._id);
+      await navigator.clipboard.writeText(data?._id ?? '');
       setCopied(true);
     } catch (err) {
       console.error('Failed to copy text: ', err);
@@ -55,7 +55,7 @@ export default function ReservationCard({ data, isSearching, sx, refetch, isArch
           <CopyOutlined onClick={handleCopy} className="cursor-pointer ml-2 text-[#969696]" />
         </section>
         {isSearching &&
-          <InitialStatus status={data?.status} />
+          <InitialStatus status={data?.status || "unrevised"} />
         }
       </section>
       <section className="flex flex-col flex-wrap">

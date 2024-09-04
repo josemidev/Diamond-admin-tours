@@ -8,11 +8,10 @@ import React, { useMemo } from "react";
 export default function Clients() {
   const { data, error, isLoading } = useGetClients()
   const [allData, setAllData] = React.useState<Reservation[]>([])
-  console.log("🚀 ~ Clients ~ allData:", allData)
 
   React.useEffect(() => {
     if (data) {
-      setAllData(data?.data)
+      setAllData(data)
     }
   }, [data])
 

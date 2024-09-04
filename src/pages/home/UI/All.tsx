@@ -7,7 +7,7 @@ import { Select, Spin } from "antd";
 export default function AllReservation() {
   const { data, error, isLoading, refetch } = useGetReservations()
 
-  const groupedData = groupByStatus(data?.data || []);
+  const groupedData = groupByStatus(data || []);
   const statusMap: { [key: string]: { bgColor: string; statusFormatted: string; textColor: string } } = {
     unrevised: {
       bgColor: 'bg-[#F8F8F8]',

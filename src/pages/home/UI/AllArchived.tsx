@@ -1,14 +1,14 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
 import { Tours } from "@/constants/data";
 import useGetArchived from "@/hooks/useGetArchived";
-import { groupByStatus } from "@/util/utils"
+import { groupByStatus } from "@/util/utils";
 import { Select, Spin } from "antd";
 
 export default function AllReservationArchived() {
   const { data, error, isLoading, refetch } = useGetArchived();
 
-  const groupedData = groupByStatus(data?.data || []);
-  const statusMap = {
+  const groupedData = groupByStatus(data || []);
+  const statusMap: { [key: string]: { bgColor: string; statusFormatted: string; textColor: string } } = {
     unrevised: {
       bgColor: 'bg-[#F8F8F8]',
       statusFormatted: 'Sin Revisar',
