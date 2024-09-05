@@ -46,7 +46,7 @@ export default function Clients() {
   const clients = useMemo(() => allData?.map((el) => {
     return {
       key: el._id,
-      id: el._id,
+      id: el.orderNumber,
       name: el.name,
       email: el.email,
       phone: el.phone,
@@ -78,7 +78,7 @@ export default function Clients() {
           footer={() => {
             return (
               <div className="flex !bg-transparent">
-                <p className="text-[#000000] text-[13px] font-bold bg-transparent">Total de solicitudes: {clients?.length}</p>
+                <p className="text-[#000000] text-[13px] font-bold bg-transparent">Numero de clientes: {clients?.length}</p>
               </div>
             )
           }}
