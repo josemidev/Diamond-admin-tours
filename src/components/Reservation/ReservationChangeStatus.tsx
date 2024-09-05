@@ -27,10 +27,11 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
         placement: 'topRight'
       });
     },
-    onSuccess: ({ data }: { data: any }): void => {
+    onSuccess: ({ data }: { data: unknown }): void => {
+      console.log("🚀 ~ ReservationChangeStatus ~ data:", data)
       notification.success({
         message: 'Success',
-        description: data.message,
+        description: 'Estado actualizado exitosamente',
         placement: 'topRight'
       });
       setIsModalOpen(false);
@@ -68,7 +69,7 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
             </p>
             <p className='text-[14px] text-[#646464]'>
               ¿Quieres actualizar el estado de la solicitud de reserva con ID
-              <span className='text-diamondPrimary'> {data?._id}</span>?
+              <span className='text-diamondPrimary'> {data?.orderNumber}</span>?
             </p>
             {(data?.status === 'unrevised' || data?.status === 'approved') &&
               <section className="flex gap-x-4 flex-wrap">
