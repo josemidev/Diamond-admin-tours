@@ -1,8 +1,9 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import { Tours } from "@/constants/data";
 import useGetArchived from "@/hooks/useGetArchived";
 import { groupByStatus } from "@/util/utils";
-import { Select, Spin } from "antd";
+import { Select } from "antd";
 
 export default function AllReservationArchived() {
   const { data, error, isLoading, refetch } = useGetArchived();
@@ -31,9 +32,6 @@ export default function AllReservationArchived() {
     },
   };
 
-  if (isLoading) {
-    <Spin />
-  }
   if (error) {
     return <p>Error...</p>
   }
@@ -52,21 +50,25 @@ export default function AllReservationArchived() {
           {/* <Select className="!h-[32px]" placeholder='Fecha de solicitud' /> */}
         </section>
       </section>
-      <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)]">
-        {Object.keys(groupedData).map((status) => {
-          const { bgColor, statusFormatted, textColor } = statusMap[status] || {};
-          return (
-            <section key={status} className={`rounded-[20px] p-3 pb-6 ${bgColor}`}>
-              <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted} ({groupedData[status].length})</h1>
-              {groupedData[status].map((item) => {
-                return (
-                  <ReservationCard key={item._id} data={item} sx="mb-5" refetch={refetch} isArchived />
-                );
-              })}
-            </section>
-          );
-        })}
-      </div>
+      {isLoading ? (
+        <LoadingIndicator />
+      ) :
+        <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)]">
+          {Object.keys(groupedData).map((status) => {
+            const { bgColor, statusFormatted, textColor } = statusMap[status] || {};
+            return (
+              <section key={status} className={`rounded-[20px] p-3 pb-6 ${bgColor}`}>
+                <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted} ({groupedData[status].length})</h1>
+                {groupedData[status].map((item) => {
+                  return (
+                    <ReservationCard key={item._id} data={item} sx="mb-5" refetch={refetch} isArchived />
+                  );
+                })}
+              </section>
+            );
+          })}
+        </div>
+      }
     </>
   )
 }

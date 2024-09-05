@@ -54,10 +54,6 @@ export default function Clients() {
     }
   }), [allData])
 
-
-  if (isLoading) {
-    <Spin />
-  }
   if (error) {
     return <p>Error...</p>
   }

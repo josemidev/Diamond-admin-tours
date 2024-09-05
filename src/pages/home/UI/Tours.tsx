@@ -9,7 +9,6 @@ import React, { useMemo } from "react";
 export default function Tours() {
   const { data, error, isLoading, refetch } = useGetTours()
   const [allData, setAllData] = React.useState<ITours[]>([])
-  console.log("🚀 ~ Tours ~ allData:", allData)
 
   React.useEffect(() => {
     if (data) {
@@ -17,9 +16,6 @@ export default function Tours() {
     }
   }, [data])
 
-  
-
-  
   const columns = [
     {
       title: 'Nombre',
@@ -55,9 +51,7 @@ export default function Tours() {
     }
   }), [allData, refetch])
 
-  if (isLoading) {
-    <Spin />
-  }
+
   if (error) {
     return <p>Error...</p>
   }
