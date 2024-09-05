@@ -22,6 +22,9 @@ export default function FormSignIn() {
     onSuccess: ({data}: {data: SignInResponse} ): void => {
       addAccesToken(data?.data?.access_token)
       navigate("/")
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000);
     }
   })
 
