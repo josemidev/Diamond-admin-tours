@@ -1,8 +1,9 @@
+import ErrorScreen from "@/components/ErrorScreen";
 import SetPriceTour from "@/components/ToursPrice";
 import useGetTours from "@/hooks/useGetTours";
 import { ITours } from "@/types/reservationsTypes";
 import { EditOutlined } from "@ant-design/icons";
-import { Breakpoint, Button, Spin, Table } from "antd";
+import { Breakpoint, Button, Table } from "antd";
 
 import React, { useMemo } from "react";
 
@@ -53,7 +54,7 @@ export default function Tours() {
 
 
   if (error) {
-    return <p>Error...</p>
+    return <ErrorScreen refetch={refetch} />
   }
 
   return (

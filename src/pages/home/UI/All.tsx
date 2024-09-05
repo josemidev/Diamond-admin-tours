@@ -1,4 +1,5 @@
 import ReservationCard from "@/components/Cards/ReservationCard";
+import ErrorScreen from "@/components/ErrorScreen";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import { Tours } from "@/constants/data";
 import useGetReservations from "@/hooks/useGetReservations";
@@ -33,7 +34,7 @@ export default function AllReservation() {
   };
 
   if (error) {
-    return <p>Error...</p>
+    return <ErrorScreen refetch={refetch} />
   }
 
   return (
