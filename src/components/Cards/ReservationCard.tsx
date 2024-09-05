@@ -50,7 +50,7 @@ export default function ReservationCard({ data, isSearching, sx, refetch, isArch
       <section className="flex gap-x-3 flex-wrap gap-y-1">
         <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
           <p className="text-diamondBlack1 text-[12px]">
-            {data?._id}
+            {data?.orderNumber}
           </p>
           <CopyOutlined onClick={handleCopy} className="cursor-pointer ml-2 text-[#969696]" />
         </section>

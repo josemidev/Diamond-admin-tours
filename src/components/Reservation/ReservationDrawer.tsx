@@ -48,7 +48,7 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
             <section className="flex flex-col gap-y-2">
               <section className="bg-white border border-border py-1 px-1 w-fit rounded-md flex">
                 <p className="text-diamondBlack1 text-[12px]">
-                  {data?._id}
+                  {data?.orderNumber}
                 </p>
               </section>
               <ReservationDetails item="Cliente" content={data?.name} />

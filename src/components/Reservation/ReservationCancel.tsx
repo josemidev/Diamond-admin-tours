@@ -1,7 +1,8 @@
-import React from 'react'
-import { Button, Modal, notification } from "antd";
-import { IReservationDrawerProps } from "@/types/reservationsTypes";
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import useAxiosPut from "@/hooks/useAxiosPut";
+import { IReservationDrawerProps } from "@/types/reservationsTypes";
+import { Button, Modal, notification } from "antd";
+import React from 'react';
 
 export default function ReservationCancel({ children, data, refetch }: IReservationDrawerProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -53,7 +54,7 @@ export default function ReservationCancel({ children, data, refetch }: IReservat
         </p>
         <p className='text-[14px] text-[#646464] mt-2'>
           ¿Quieres {data?.isArchived ? 'desarchivar' : 'archivar'}  solicitud de reserva con ID
-          <span className='text-diamondPrimary'> {data?._id}</span>?
+          <span className='text-diamondPrimary'> {data?.orderNumber}</span>?
         </p>
         <section className="flex gap-x-4 mt-10">
           <Button
