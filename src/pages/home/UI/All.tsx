@@ -49,7 +49,7 @@ export default function AllReservation() {
         </p>
         <section className="flex gap-x-6">
           <Select options={Tours} className="!h-[32px] !w-[280px]" placeholder='Nombre del tour' />
-          <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
+          {/* <Select className="!h-[32px]" placeholder='Fecha de solicitud' /> */}
         </section>
       </section>
       <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)]">

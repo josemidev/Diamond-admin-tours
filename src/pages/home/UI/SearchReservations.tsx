@@ -32,7 +32,7 @@ export default function SearchReservations() {
         <section className="flex gap-x-6 w-fit mt-5">
           <Input className="!h-[32px]" suffix={<SearchOutlined className="text-[14px] !w-fit" />} placeholder='Buscar Reserva' />
           <Select options={Tours} className="!h-[32px] !w-[280px]" placeholder='Nombre del tour' />
-          <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
+          {/* <Select className="!h-[32px]" placeholder='Fecha de solicitud' /> */}
         </section>
       </section>
       <section className="!h-[calc(100vh-250px)] bg-[#F8F8F8]">

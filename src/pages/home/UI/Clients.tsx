@@ -2,7 +2,7 @@ import { NewStatus } from "@/components/Cards/StatusCard";
 import useGetClients from "@/hooks/useGetClient";
 import { Reservation } from "@/types/reservationsTypes";
 import { SearchOutlined } from "@ant-design/icons";
-import { Input, Select, Spin, Table } from "antd";
+import { Input, Spin, Table } from "antd";
 import React, { useMemo } from "react";
 
 export default function Clients() {
@@ -70,7 +70,7 @@ export default function Clients() {
         </h1>
         <section className="flex gap-x-4 mt-4">
           <Input className="!h-[32px] !w-fit" suffix={<SearchOutlined className="text-[14px] !w-fit" />} placeholder='Buscar Reserva' />
-          <Select className="!h-[32px]" placeholder='Fecha de solicitud' />
+          {/* <Select className="!h-[32px]" placeholder='Fecha de solicitud' /> */}
         </section>
       </section>
       <section className="mt-5 pb-5 !overflow-y-auto !h-[calc(100vh-250px)]">
