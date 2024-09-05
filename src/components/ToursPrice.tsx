@@ -67,8 +67,9 @@ export default function SetPriceTour({ children, name, price, refetch }: ITours)
         >
           <Form.Item
             noStyle
-            required={false}
+            required
             name='price'
+            rules={[{ required: true, message: 'Ingresa un precio' }]}
           >
             <Input
               type="number"
