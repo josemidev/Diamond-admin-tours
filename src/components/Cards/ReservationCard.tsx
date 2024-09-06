@@ -12,7 +12,7 @@ export default function ReservationCard({ data, isSearching, sx, refetch, isArch
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(data?._id ?? '');
+      await navigator.clipboard.writeText(data?.orderNumber ?? '');
       setCopied(true);
     } catch (err) {
       console.error('Failed to copy text: ', err);
