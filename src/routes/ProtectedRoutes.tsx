@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({
-  redirectTo = "/singin",
+  redirectTo = "/signin",
   children,
 }: ProtectedRouteProps) {
   const access_token = useAuthorizationState.getState().access_token;

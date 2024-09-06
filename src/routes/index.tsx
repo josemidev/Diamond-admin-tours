@@ -15,11 +15,11 @@ function index() {
           <Route index path="/" element={<Home />} />
         </Route>
         <Route element={<OutRoute />}>
-          <Route path="/singin" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  ); 
+  );
 }
 
 export default index

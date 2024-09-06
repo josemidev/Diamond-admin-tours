@@ -42,3 +42,8 @@ export interface ITours {
   _id?: string;
   refetch?: () => void;
 }
+
+export interface ErrorScreenProps {
+  refetch?: () => void;
+  isQueryError?: boolean;
+}

@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 function LogOut(): VoidFunction {
   const navigate = useNavigate();
-  const {removeAccesToken} = useAuthorizationState.getState();
+  const { removeAccesToken } = useAuthorizationState.getState();
 
   function handleLogOut(): void {
     removeAccesToken();
-    navigate("/singin");
+    navigate("/signin");
   }
 
   return handleLogOut;

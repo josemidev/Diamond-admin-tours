@@ -1,12 +1,13 @@
 import { NewStatus } from "@/components/Cards/StatusCard";
+import ErrorScreen from "@/components/ErrorScreen";
 import useGetClients from "@/hooks/useGetClient";
 import { Reservation } from "@/types/reservationsTypes";
 import { SearchOutlined } from "@ant-design/icons";
-import { Input, Spin, Table } from "antd";
+import { Input, Table } from "antd";
 import React, { useMemo } from "react";
 
 export default function Clients() {
-  const { data, error, isLoading } = useGetClients()
+  const { data, error, isLoading, refetch } = useGetClients()
   const [allData, setAllData] = React.useState<Reservation[]>([])
 
   React.useEffect(() => {
@@ -54,12 +55,8 @@ export default function Clients() {
     }
   }), [allData])
 
-
-  if (isLoading) {
-    <Spin />
-  }
   if (error) {
-    return <p>Error...</p>
+    return <ErrorScreen refetch={refetch} />
   }
 
   return (
