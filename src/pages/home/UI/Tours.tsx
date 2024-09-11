@@ -74,7 +74,7 @@ export default function Tours() {
           dataSource={tours || []}
           pagination={false}
           loading={isLoading}
-          scroll={{ x: 1000, y: 500 }}
+          scroll={{ x: 1000, y: 800 }}
         />
       </section>
     </>
