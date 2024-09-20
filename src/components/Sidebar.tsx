@@ -3,6 +3,7 @@ import AllReservationArchived from '@/pages/home/UI/AllArchived'
 import Clients from "@/pages/home/UI/Clients"
 import SearchReservations from '@/pages/home/UI/SearchReservations'
 import Tours from "@/pages/home/UI/Tours"
+import Users from "@/pages/home/UI/Users"
 import { Tabs, TabsProps, Tooltip } from "antd"
 import { useState } from 'react'
 
@@ -34,6 +35,11 @@ export default function Sidebar() {
       key: 'tours',
       label: <p className={`${TAB === 'tours' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Tours</p>,
       children: <Tours />
+    },
+    {
+      key: 'users',
+      label: <p className={`${TAB === 'users' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Usuarios</p>,
+      children: <Users />
     },
     {
       key: 'metrics',
