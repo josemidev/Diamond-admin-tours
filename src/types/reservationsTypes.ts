@@ -47,3 +47,10 @@ export interface ErrorScreenProps {
   refetch?: () => void;
   isQueryError?: boolean;
 }
+
+export interface IUserProps {
+  children?: React.ReactNode;
+  refetch?: () => void;
+  id?: string;
+  data?: any;
+}
