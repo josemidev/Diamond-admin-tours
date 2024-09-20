@@ -28,7 +28,6 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
       });
     },
     onSuccess: ({ data }: { data: unknown }): void => {
-      console.log("🚀 ~ ReservationChangeStatus ~ data:", data)
       notification.success({
         message: 'Success',
         description: 'Estado actualizado exitosamente',
