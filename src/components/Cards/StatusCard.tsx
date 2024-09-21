@@ -1,6 +1,6 @@
 import { IStatusCardProps } from '@/types/reservationsTypes'
 
-export function InitialStatus({ status }: IStatusCardProps) {
+export function InitialStatus({ statusOrder }: IStatusCardProps) {
   const statusDetails = {
     unrevised: ['bg-[#F8F8F8]', 'Sin Revisar', 'text-unrevised', 'border-[#E5E5E5]'],
     review: ['bg-[#E1AB3F14]', 'En revisión', 'text-review'],
@@ -8,16 +8,16 @@ export function InitialStatus({ status }: IStatusCardProps) {
     rejected: ['bg-[#EC623712]', 'Rechazado', 'text-rejected'],
   }
   return (
-    <section className={`${statusDetails[status][0]} border ${statusDetails[status][3]} py-1 px-1 w-fit rounded-md flex`}>
-      <p className={`text-diamondBlack1 text-[12px] font-semibold capitalize ${statusDetails[status][2]}`}>
-        {statusDetails[status][1]}
+    <section className={`${statusDetails[statusOrder][0]} border ${statusDetails[statusOrder][3]} py-1 px-1 w-fit rounded-md flex`}>
+      <p className={`text-diamondBlack1 text-[12px] font-semibold capitalize ${statusDetails[statusOrder][2]}`}>
+        {statusDetails[statusOrder][1]}
       </p>
     </section>
   )
 }
 
 
-export function NewStatus({ status }: IStatusCardProps) {
+export function NewStatus({ statusOrder }: IStatusCardProps) {
   const statusDetails = {
     unrevised: ['bg-[#E1AB3F14]', 'En revisión', 'text-review', 'border-[#E1AB3F4D]'],
     review: ['bg-[#E1AB3F1A ]', 'En revisión', 'text-review'],
@@ -25,9 +25,9 @@ export function NewStatus({ status }: IStatusCardProps) {
     rejected: ['bg-[#EC623712]', 'Rechazado', 'text-rejected'],
   }
   return (
-    <section className={`${statusDetails[status][0]} border ${statusDetails[status][3]}  py-1 px-1 w-fit rounded-md flex`}>
-      <p className={`text-diamondBlack1 text-[12px] font-semibold capitalize ${statusDetails[status][2]}`}>
-        {statusDetails[status][1]}
+    <section className={`${statusDetails[statusOrder][0]} border ${statusDetails[statusOrder][3]}  py-1 px-1 w-fit rounded-md flex`}>
+      <p className={`text-diamondBlack1 text-[12px] font-semibold capitalize ${statusDetails[statusOrder][2]}`}>
+        {statusDetails[statusOrder][1]}
       </p>
     </section>
   )

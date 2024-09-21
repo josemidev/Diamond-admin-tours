@@ -55,12 +55,12 @@ export default function AllReservationArchived() {
         <LoadingIndicator />
       ) :
         <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)]">
-          {Object.keys(groupedData).map((status) => {
-            const { bgColor, statusFormatted, textColor } = statusMap[status] || {};
+          {Object.keys(groupedData).map((statusOrder) => {
+            const { bgColor, statusFormatted, textColor } = statusMap[statusOrder] || {};
             return (
-              <section key={status} className={`rounded-[20px] p-3 pb-6 ${bgColor}`}>
-                <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted} ({groupedData[status].length})</h1>
-                {groupedData[status].map((item) => {
+              <section key={statusOrder} className={`rounded-[20px] p-3 pb-6 ${bgColor}`}>
+                <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>{statusFormatted} ({groupedData[statusOrder].length})</h1>
+                {groupedData[statusOrder].map((item) => {
                   return (
                     <ReservationCard key={item._id} data={item} sx="mb-5" refetch={refetch} isArchived />
                   );

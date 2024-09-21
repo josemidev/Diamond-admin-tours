@@ -1,4 +1,4 @@
-import { NewStatus } from "@/components/Cards/StatusCard";
+import { InitialStatus } from "@/components/Cards/StatusCard";
 import ErrorScreen from "@/components/ErrorScreen";
 import useGetClients from "@/hooks/useGetClient";
 import { Reservation } from "@/types/reservationsTypes";
@@ -46,12 +46,12 @@ export default function Clients() {
 
   const clients = useMemo(() => allData?.map((el) => {
     return {
-      key: el._id,
+      key: el.orderNumber,
       id: el.orderNumber,
       name: el.name,
       email: el.email,
       phone: el.phone,
-      status: (<NewStatus status={el.status} />),
+      status: (<InitialStatus statusOrder={el.statusOrder} />),
     }
   }), [allData])
 
