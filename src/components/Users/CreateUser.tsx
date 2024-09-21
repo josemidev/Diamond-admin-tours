@@ -34,7 +34,7 @@ export default function CreateUser({ children, refetch }: IUserProps) {
       });
       setIsModalOpen(false);
       form.resetFields()
-      /* refetch && refetch() */
+      refetch && refetch()
     }
   })
 
@@ -69,6 +69,13 @@ export default function CreateUser({ children, refetch }: IUserProps) {
           </Form.Item>
           <Form.Item
             noStyle
+            rules={[{ required: true, message: 'Please fill with your name' }]}
+            name='username'
+          >
+            <Input placeholder="" />
+          </Form.Item>
+          <Form.Item
+            noStyle
             rules={[{ required: true, message: 'Crete a strong password' }]}
             name='password'
           >
@@ -76,13 +83,14 @@ export default function CreateUser({ children, refetch }: IUserProps) {
           </Form.Item>
           <Form.Item
             noStyle
-            rules={[{ required: true, message: 'Status is required' }]}
-            name='username'
+            rules={[{ required: false }]}
           >
             <Select
+              disabled
+              defaultValue='AGENT'
               className="w-full"
               options={[
-                { value: 'ADMIN', label: 'Administrador' },
+                /*  { value: 'ADMIN', label: 'Administrador' }, */
                 { value: 'AGENT', label: 'Agente' },
               ]}
               placeholder='Usuario'

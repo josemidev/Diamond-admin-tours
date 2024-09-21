@@ -3,8 +3,9 @@ import React from 'react';
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { IUserProps } from "@/types/reservationsTypes";
 import { Button, Form, Input, Modal, notification } from "antd";
+import TagCard from "../Cards/TagCard";
 
-export default function ResetPassword({ children, refetch, id }: IUserProps) {
+export default function ResetPassword({ children, data, refetch, id }: IUserProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [form] = Form.useForm();
 
@@ -34,7 +35,7 @@ export default function ResetPassword({ children, refetch, id }: IUserProps) {
       });
       setIsModalOpen(false);
       form.resetFields()
-      /* refetch && refetch() */
+      refetch && refetch()
     }
   })
 
@@ -55,9 +56,9 @@ export default function ResetPassword({ children, refetch, id }: IUserProps) {
         <p className="text-diamondBlack3 capitalize mt-3 mb-[18px] text-[24px] font-bold">
           Restablecer Contraseña de Usuario
         </p>
-        <div className="p-[10px] border border-[#E5E5E5] min-h-[38px] rounded-lg bg-[#FBFBFB]">
-          <b>Cesar Fontalvo</b>
-        </div>
+        <TagCard sx="!p-[10px] !w-full !rounded-lg !min-h-[38px] ">
+          {data?.name} {data?.createdAt}
+        </TagCard>
         <Form
           layout="vertical"
           onFinish={onFinish}
