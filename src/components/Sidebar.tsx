@@ -36,11 +36,11 @@ export default function Sidebar() {
       label: <p className={`${TAB === 'tours' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Tours</p>,
       children: <Tours />
     },
-    {
-      key: 'users',
-      label: <p className={`${TAB === 'users' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Usuarios</p>,
-      children: <Users />
-    },
+    /*     {
+          key: 'users',
+          label: <p className={`${TAB === 'users' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Usuarios</p>,
+          children: <Users />
+        }, */
     {
       key: 'metrics',
       disabled: true,
