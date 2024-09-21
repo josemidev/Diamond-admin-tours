@@ -1,17 +1,17 @@
+import TagCard from "@/components/Cards/TagCard";
 import ErrorScreen from "@/components/ErrorScreen";
 import CreateUser from "@/components/Users/CreateUser";
 import DeleteUser from "@/components/Users/DeleteUser";
 import ResetPassword from "@/components/Users/ResetPassword";
-import useGetTours from "@/hooks/useGetTours";
-import { ITours } from "@/types/reservationsTypes";
+import useGetUsers from "@/hooks/useGetUsers";
+import { type IUserProps } from "@/types/reservationsTypes";
 import { DeleteOutlined, PlusOutlined, RetweetOutlined } from "@ant-design/icons";
 import { Button, Table, TableProps } from "antd";
-
 import React, { useMemo } from "react";
 
 export default function Users() {
-  const { data, error, isLoading, refetch } = useGetTours()
-  const [allData, setAllData] = React.useState<ITours[]>([])
+  const { data, error, isLoading, refetch } = useGetUsers()
+  const [allData, setAllData] = React.useState([])
 
   React.useEffect(() => {
     if (data) {
@@ -19,7 +19,7 @@ export default function Users() {
     }
   }, [data])
 
-  const columns: TableProps<ITours>['columns'] = [
+  const columns: TableProps<IUserProps>['columns'] = [
     {
       title: 'Usuarios',
       dataIndex: 'name',
@@ -28,8 +28,8 @@ export default function Users() {
     },
     {
       title: 'Fecha de creación',
-      dataIndex: 'price',
-      key: 'price',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
       width: 100,
       rowScope: 'row',
       align: 'end'
@@ -45,25 +45,32 @@ export default function Users() {
       title: '',
       dataIndex: 'actions',
       key: 'actions',
-      width: 100
+      width: 50
     },
   ];
 
-  const tours = useMemo(() => allData?.map((el) => {
+  const tours = useMemo(() => allData?.map((el: IUserProps) => {
     return {
       key: el._id,
       name: el.name,
-      price: el.price,
+      createdAt: el.createdAt,
+      role: (
+        <TagCard>
+          <span className="text-diamondBlack1 text-[12px] font-semibold">
+            Agent
+          </span>
+        </TagCard>
+      ),
       actions: (
-        <section className="flex flex-wrap gap-x-2">
-          <ResetPassword id="" data=''>
+        <section className="flex flex-wrap gap-x-2 justify-end mr-4">
+          <ResetPassword id={el._id} data={el} refetch={refetch}>
             <Button
               className="rounded-lg"
               size="small"
               icon={<RetweetOutlined className="text-[#969696] !text-[13px]" />}
             />
           </ResetPassword>
-          <DeleteUser id="" data=''>
+          <DeleteUser id={el._id} data={el} refetch={refetch}>
             <Button
               className="rounded-lg"
               size="small"
@@ -87,7 +94,7 @@ export default function Users() {
           <h1 className="text-[28px] font-bold text-[#000000] capitalize leading-none">
             Usuarios
           </h1>
-          <CreateUser>
+          <CreateUser refetch={refetch}>
             <Button
               className="!h-[38px] rounded-xl"
               icon={<PlusOutlined />}
