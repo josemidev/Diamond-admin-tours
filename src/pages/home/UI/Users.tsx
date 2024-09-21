@@ -5,6 +5,7 @@ import DeleteUser from "@/components/Users/DeleteUser";
 import ResetPassword from "@/components/Users/ResetPassword";
 import useGetUsers from "@/hooks/useGetUsers";
 import { type IUserProps } from "@/types/reservationsTypes";
+import { formatGivenDate } from "@/util/utils";
 import { DeleteOutlined, PlusOutlined, RetweetOutlined } from "@ant-design/icons";
 import { Button, Table, TableProps } from "antd";
 import React, { useMemo } from "react";
@@ -53,7 +54,7 @@ export default function Users() {
     return {
       key: el._id,
       name: el.name,
-      createdAt: el.createdAt,
+      createdAt: formatGivenDate(el?.createdAt),
       role: (
         <TagCard>
           <span className="text-diamondBlack1 text-[12px] font-semibold">
