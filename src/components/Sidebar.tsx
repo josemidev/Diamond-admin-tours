@@ -3,7 +3,7 @@ import AllReservationArchived from '@/pages/home/UI/AllArchived'
 import Clients from "@/pages/home/UI/Clients"
 import SearchReservations from '@/pages/home/UI/SearchReservations'
 import Tours from "@/pages/home/UI/Tours"
-import Users from "@/pages/home/UI/Users"
+/* import Users from "@/pages/home/UI/Users" */
 import { Tabs, TabsProps, Tooltip } from "antd"
 import { useState } from 'react'
 
