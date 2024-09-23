@@ -15,7 +15,7 @@ export default function ReservationCancel({ children, data, refetch }: IReservat
     setIsModalOpen(false);
   };
 
-  const action = useAxiosPut(`/dashboard/archived/${data?._id}`, {
+  const action = useAxiosPut(`/dashboard/archived/${data?.orderNumber}`, {
     manual: true,
     onError: (e): void => {
       const mgs = e
@@ -38,7 +38,7 @@ export default function ReservationCancel({ children, data, refetch }: IReservat
 
   function onFinish(): void {
     action.run({
-      id: data?._id,
+      id: data?.orderNumber,
       isArchived: !data?.isArchived
     })
   }

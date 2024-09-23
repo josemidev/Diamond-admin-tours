@@ -17,7 +17,7 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
     setIsModalOpen(false);
   };
 
-  const action = useAxiosPut(`/dashboard/change-status/${data?._id}`, {
+  const action = useAxiosPut(`/dashboard/change-status/${data?.orderNumber}`, {
     manual: true,
     onError: (e): void => {
       const mgs = e
@@ -27,7 +27,7 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
         placement: 'topRight'
       });
     },
-    onSuccess: ({ data }: { data: unknown }): void => {
+    onSuccess: (): void => {
       notification.success({
         message: 'Success',
         description: 'Estado actualizado exitosamente',
@@ -47,7 +47,7 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
     };
 
     action.run({
-      status: nextStatus[data?.status ?? ''] || newStatus,
+      status: nextStatus[data?.statusOrder ?? ''] || newStatus,
       observations
     })
   }
@@ -70,14 +70,14 @@ export default function ReservationChangeStatus({ children, data, refetch }: IRe
               ¿Quieres actualizar el estado de la solicitud de reserva con ID
               <span className='text-diamondPrimary'> {data?.orderNumber}</span>?
             </p>
-            {(data?.status === 'unrevised' || data?.status === 'approved') &&
+            {(data?.statusOrder === 'unrevised' || data?.statusOrder === 'approved') &&
               <section className="flex gap-x-4 flex-wrap">
-                <InitialStatus status={data?.status} />
+                <InitialStatus statusOrder={data?.statusOrder} />
                 <ArrowRightOutlined className='text-[#646464] text-[16px]' />
-                <NewStatus status={data?.status} />
+                <NewStatus statusOrder={data?.statusOrder} />
               </section>
             }
-            {data?.status === 'review' &&
+            {data?.statusOrder === 'review' &&
               <Form.Item
                 noStyle
                 rules={[{ required: true, message: 'Status is required' }]}

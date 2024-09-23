@@ -32,7 +32,7 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
         <section className="flex flex-col justify-between h-full">
           <section>
             <section className="flex justify-between items-center">
-              <InitialStatus status={data?.status || "unrevised"} />
+              <InitialStatus statusOrder={data?.statusOrder || "unrevised"} />
               <Button
                 onClick={onClose}
                 className="rounded-md border-border hover:!border-[#969696]"
@@ -89,7 +89,7 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
                 {data?.isArchived ? 'Desarchivar' : 'Archivar'}
               </Button>
             </ReservationCancel>
-            {!isArchived && data?.status !== 'rejected' &&
+            {!isArchived && data?.statusOrder !== 'rejected' &&
               <ReservationChangeStatus data={data} refetch={refetch}>
                 <Button
                   type='primary'
