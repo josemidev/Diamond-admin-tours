@@ -36,6 +36,17 @@ export default function Sidebar() {
       label: <p className={`${TAB === 'tours' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Tours</p>,
       children: <Tours />
     },
+    {
+      key: 'user',
+      disabled: true,
+      label:
+        <Tooltip title='Próximamente'>
+          <p className='text-disabled'>
+            Usuarios
+          </p>,
+        </Tooltip>,
+      children: <p>Usuarios</p>
+    },
     /*     {
           key: 'users',
           label: <p className={`${TAB === 'users' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Usuarios</p>,
@@ -52,6 +63,7 @@ export default function Sidebar() {
         </Tooltip>,
       children: <p>Métricas</p>
     },
+    
   ]
 
   return (
