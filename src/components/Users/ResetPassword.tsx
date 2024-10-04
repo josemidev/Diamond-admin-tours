@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from 'react';
-import useAxiosPost from "@/hooks/useAxiosPost";
 import { IUserProps } from "@/types/reservationsTypes";
 import { Button, Form, Input, Modal, notification } from "antd";
 import TagCard from "../Cards/TagCard";
+import { formatGivenDate } from "@/util/utils";
+import useAxiosPut from "@/hooks/useAxiosPut";
 
 export default function ResetPassword({ children, data, refetch, id }: IUserProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -17,7 +18,7 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
     setIsModalOpen(false);
   };
 
-  const action = useAxiosPost(``, {
+  const action = useAxiosPut(`/auth/reset-password/${id}`, {
     manual: true,
     onError: (e): void => {
       const mgs = e
@@ -39,11 +40,10 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
     }
   })
 
-  function onFinish(values: { password: string, new_password: string }): void {
+  function onFinish(values: { actualPassword: string, newPassword: string }): void {
     action.run({
-      id: id,
-      password: values.password,
-      new_password: values.new_password
+      actualPassword: values.actualPassword,
+      newPassword: values.newPassword
     })
   }
 
@@ -57,7 +57,7 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
           Restablecer Contraseña de Usuario
         </p>
         <TagCard sx="!p-[10px] !w-full !rounded-lg !min-h-[38px] ">
-          {data?.name} {data?.createdAt}
+          {data?.name} {formatGivenDate(data?.createdAt)}
         </TagCard>
         <Form
           layout="vertical"
@@ -67,16 +67,16 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
           <Form.Item
             noStyle
             rules={[{ required: true, message: 'Crete a strong password' }]}
-            name='password'
+            name='actualPassword'
           >
-            <Input.Password placeholder='Imgresa tu Contraseña' />
+            <Input.Password placeholder='Ingresa tu Contraseña Actual' />
           </Form.Item>
           <Form.Item
             noStyle
             rules={[{ required: true, message: 'Crete a strong password' }]}
-            name='new_password'
+            name='newPassword'
           >
-            <Input.Password placeholder='Nueva Contraseña' />
+            <Input.Password placeholder='Ingresa una Nueva Contraseña' />
           </Form.Item>
           <section className="flex gap-x-4 mt-5">
             <Button
@@ -94,7 +94,7 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
               className="rounded-md w-full text-white hover:!bg-[#4a6bb0]"
               size="large"
             >
-              Eliminar Cuenta
+              Actualizar Contraseña
             </Button>
           </section>
         </Form>

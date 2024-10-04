@@ -4,6 +4,7 @@ import { IUserProps } from "@/types/reservationsTypes";
 import { Button, Modal, notification, } from "antd";
 import useAxiosDelete from "@/hooks/useAxiosDelete";
 import TagCard from "../Cards/TagCard";
+import { formatGivenDate } from "@/util/utils";
 
 export default function DeleteUser({ children, refetch, id, data }: IUserProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -54,7 +55,7 @@ export default function DeleteUser({ children, refetch, id, data }: IUserProps) 
             Eliminar Usuario
           </p>
           <TagCard sx="!p-[10px] !w-full !rounded-lg !min-h-[38px] ">
-            {data?.name} {data?.createdAt}
+            {data?.name} {formatGivenDate(data?.createdAt)}
           </TagCard>
           <p className='text-[14px] text-[#646464]'>
             ¿Seguro que deseas eliminar esta cuenta? Esta acción es irreversible.

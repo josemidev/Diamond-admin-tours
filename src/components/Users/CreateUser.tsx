@@ -38,11 +38,12 @@ export default function CreateUser({ children, refetch }: IUserProps) {
     }
   })
 
-  function onFinish(values: { name: string, password: string, username: string }): void {
+  function onFinish(values: { name: string, password: string, username: string, role: string }): void {
     action.run({
       name: values.name,
       password: values.password,
-      username: values.username
+      username: values.username,
+      role: ['AGENT']
     })
   }
 
@@ -72,7 +73,7 @@ export default function CreateUser({ children, refetch }: IUserProps) {
             rules={[{ required: true, message: 'Please fill with your name' }]}
             name='username'
           >
-            <Input placeholder="" />
+            <Input placeholder="Username" />
           </Form.Item>
           <Form.Item
             noStyle
@@ -82,6 +83,7 @@ export default function CreateUser({ children, refetch }: IUserProps) {
             <Input.Password placeholder='Contraseña' />
           </Form.Item>
           <Form.Item
+            name='role'
             noStyle
             rules={[{ required: false }]}
           >
@@ -90,7 +92,6 @@ export default function CreateUser({ children, refetch }: IUserProps) {
               defaultValue='AGENT'
               className="w-full"
               options={[
-                /*  { value: 'ADMIN', label: 'Administrador' }, */
                 { value: 'AGENT', label: 'Agente' },
               ]}
               placeholder='Usuario'
