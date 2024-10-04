@@ -21,7 +21,9 @@ function useAxiosDelete<TData, TParams extends [body: unknown]>(
     runAsync,
   } = useRequest(
     async (body: TParams[0]): Promise<TData> => {
-      return await axios.delete(`${HOST}${pathname}`, body, {});
+      return await axios.delete(`${HOST}${pathname}`, {
+        data: body,
+      });
     },
     {
       manual: true,
