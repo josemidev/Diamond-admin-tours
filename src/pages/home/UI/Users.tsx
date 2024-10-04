@@ -7,7 +7,7 @@ import useGetUsers from "@/hooks/useGetUsers";
 import { type IUserProps } from "@/types/reservationsTypes";
 import { formatGivenDate } from "@/util/utils";
 import { DeleteOutlined, PlusOutlined, RetweetOutlined } from "@ant-design/icons";
-import { Button, Table, TableProps } from "antd";
+import { Button, Table, TableColumnsType } from "antd";
 import React, { useMemo } from "react";
 
 export default function Users() {
@@ -20,7 +20,7 @@ export default function Users() {
     }
   }, [data])
 
-  const columns: TableProps<IUserProps>['columns'] = [
+  const columns: TableColumnsType = [
     {
       title: 'Usuarios',
       dataIndex: 'name',
