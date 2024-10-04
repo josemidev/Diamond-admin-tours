@@ -72,7 +72,7 @@ export default function Tours() {
           bordered={false}
           columns={columns}
           dataSource={tours || []}
-          pagination={false}
+          pagination={{ defaultPageSize: 10 }}
           loading={isLoading}
           scroll={{ x: 1000, y: 800 }}
         />

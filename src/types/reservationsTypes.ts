@@ -6,7 +6,7 @@ export interface Reservation {
   numberOfPersons: number;
   tourName: string;
   dateStartingTour: string;
-  status: "unrevised" | "review" | "approved" | "rejected";
+  statusOrder: "unrevised" | "review" | "approved" | "rejected";
   orderNumber: string;
   changeHistory: { date: string; description: string }[];
   isArchived: boolean;
@@ -32,7 +32,7 @@ export interface IReservationDrawerProps {
 }
 
 export interface IStatusCardProps {
-  status: "unrevised" | "review" | "approved" | "rejected";
+  statusOrder: "unrevised" | "review" | "approved" | "rejected";
 }
 
 export interface ITours {

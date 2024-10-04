@@ -3,7 +3,7 @@ import AllReservationArchived from '@/pages/home/UI/AllArchived'
 import Clients from "@/pages/home/UI/Clients"
 import SearchReservations from '@/pages/home/UI/SearchReservations'
 import Tours from "@/pages/home/UI/Tours"
-import Users from "@/pages/home/UI/Users"
+/* import Users from "@/pages/home/UI/Users" */
 import { Tabs, TabsProps, Tooltip } from "antd"
 import { useState } from 'react'
 
@@ -37,10 +37,21 @@ export default function Sidebar() {
       children: <Tours />
     },
     {
-      key: 'users',
-      label: <p className={`${TAB === 'users' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Usuarios</p>,
-      children: <Users />
+      key: 'user',
+      disabled: true,
+      label:
+        <Tooltip title='Próximamente'>
+          <p className='text-disabled'>
+            Usuarios
+          </p>,
+        </Tooltip>,
+      children: <p>Usuarios</p>
     },
+    /*     {
+          key: 'users',
+          label: <p className={`${TAB === 'users' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Usuarios</p>,
+          children: <Users />
+        }, */
     {
       key: 'metrics',
       disabled: true,
@@ -52,6 +63,7 @@ export default function Sidebar() {
         </Tooltip>,
       children: <p>Métricas</p>
     },
+    
   ]
 
   return (

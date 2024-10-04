@@ -55,7 +55,7 @@ export default function ReservationCard({ data, isSearching, sx, refetch, isArch
           <CopyOutlined onClick={handleCopy} className="cursor-pointer ml-2 text-[#969696]" />
         </section>
         {isSearching &&
-          <InitialStatus status={data?.status || "unrevised"} />
+          <InitialStatus statusOrder={data?.statusOrder || "unrevised"} />
         }
       </section>
       <section className="flex flex-col flex-wrap">
