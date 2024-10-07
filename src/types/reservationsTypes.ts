@@ -48,9 +48,21 @@ export interface ErrorScreenProps {
   isQueryError?: boolean;
 }
 
-export interface IUserProps {
+export interface IUserProps extends IUser {
   children?: React.ReactNode;
   refetch?: () => void;
   id?: string;
-  data?: any;
+  data?: IUser;
+}
+
+export interface IUser {
+  createdAt?: string;
+  role?: string;
+  name?: string;
+  _id?: string;
+}
+
+export interface ITagCardProps {
+  children?: React.ReactNode;
+  sx?: string;
 }
