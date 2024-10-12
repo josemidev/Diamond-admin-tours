@@ -29,6 +29,7 @@ export interface IReservationDrawerProps {
   data?: Reservation;
   refetch?: () => void;
   isArchived?: boolean;
+  closeDrawer?: () => void;
 }
 
 export interface IStatusCardProps {
