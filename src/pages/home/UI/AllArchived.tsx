@@ -39,7 +39,7 @@ export default function AllReservationArchived() {
 
   return (
     <>
-      <section className="ml-5 sticky top-0 w-full z-10">
+      <section className="ml-5 sticky top-0 w-fit z-10">
         <h1 className="text-[28px] font-bold text-[#000000] mt-8 capitalize leading-none">
           Solicitudes de reservas archivadas
         </h1>
@@ -54,11 +54,11 @@ export default function AllReservationArchived() {
       {isLoading ? (
         <LoadingIndicator />
       ) :
-        <div className="grid grid-cols-2 xl:grid-cols-4 mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)]">
+        <div className="grid grid-flow-col mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)] overflow-x-scroll">
           {['unrevised', 'review', 'approved', 'rejected',].map((statusOrder) => {
             const { bgColor, statusFormatted, textColor } = statusMap[statusOrder] || {};
             return (
-              <section key={statusOrder} className={`rounded-[20px] p-3 pb-6 ${bgColor}`}>
+              <section key={statusOrder} className={`rounded-[20px] p-3 pb-6 min-w-[280px] ${bgColor}`}>
                 <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>
                   {statusFormatted} ({groupedData[statusOrder]?.length ?? 0})
                 </h1>

@@ -61,7 +61,7 @@ export default function Clients() {
 
   return (
     <>
-      <section className="ml-5 sticky top-0 w-full z-10">
+      <section className="ml-5 sticky top-0 w-fit z-10">
         <h1 className="text-[28px] font-bold text-[#000000] mt-8 capitalize leading-none">
           Clientes
         </h1>
