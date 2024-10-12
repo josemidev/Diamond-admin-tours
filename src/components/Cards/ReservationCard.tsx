@@ -32,7 +32,7 @@ export default function ReservationCard({ data, isSearching, sx, refetch, isArch
   }, [copied]);
 
   return (
-    <section className={`bg-white rounded-t-lg px-3 py-4 flex flex-col gap-y-5 h-fit w-full ${sx}`}>
+    <section className={`bg-white rounded-lg px-3 py-4 flex flex-col gap-y-5 h-fit w-full ${sx}`}>
       <section className="flex justify-between gap-x-3">
         <p className="text-diamondBlack3 font-bold text-[17px] leading-5">
           {data?.tourName}
