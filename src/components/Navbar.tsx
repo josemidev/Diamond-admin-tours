@@ -2,8 +2,12 @@ import LogOut from "@/util/functions/logOut";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, type MenuProps } from "antd";
 import Logo from '../assets/svg/logoColors.svg';
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
+import { ICurrentUserProps } from "@/types/userTypes";
 
 export default function Navbar() {
+  const { data } = useGetCurrentUser()
+  const currentUser: ICurrentUserProps = data || {}
 
   const items: MenuProps['items'] = [
     {
@@ -25,7 +29,7 @@ export default function Navbar() {
       <img src={Logo} alt="logo" />
       <section className="flex gap-x-3 items-center">
         <p className="text-diamondBlack1">
-          Hola, <span className="font-semibold">Admin</span>
+          Hola, <span className="font-semibold">{currentUser?.username}</span>
         </p>
         <Dropdown menu={{ items }}>
           <section className="flex justify-center items-center gap-x-2">
