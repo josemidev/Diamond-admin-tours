@@ -12,6 +12,8 @@ const theme = {
       defaultHoverColor: "transparent",
       defaultHoverBorderColor: "#212121E0",
       defaultHoverBg: "#F5F5F5",
+      controlHeightLG: 32,
+      fontSize: 14,
     },
     Select: {
       controlHeight: 40,
