@@ -1,5 +1,5 @@
 import { Form } from "antd";
-import InputForm from "@/components/InputForm";
+import InputForm from "@/components/FormElements/InputForm";
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { useAuthorizationState } from "@/store/authorization";
 import { type SignInRequest, type SignInResponse } from "@/types/authSignInTypes";
