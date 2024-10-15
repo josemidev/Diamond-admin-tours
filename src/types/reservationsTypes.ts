@@ -67,3 +67,14 @@ export interface ITagCardProps {
   children?: React.ReactNode;
   sx?: string;
 }
+
+export interface IBookingsValues {
+  name: string;
+  email: string;
+  phone: string;
+  numberOfPersons: number;
+  tourName: string;
+  dateStartingTour: string;
+  pickup: string;
+  price: number;
+}
