@@ -1,26 +1,28 @@
 import { Form } from "antd";
-
 import InputForm from "@/components/InputForm";
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { useAuthorizationState } from "@/store/authorization";
 import { type SignInRequest, type SignInResponse } from "@/types/authSignInTypes";
 import { UserAddOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { useCurrentUser } from "@/store/user";
 
 export default function FormSignIn() {
   const navigate = useNavigate();
   const addAccesToken = useAuthorizationState(
     (state) => state.addAccesToken
   );
+  const addCurrentUser = useCurrentUser(state => state.addCurrentUser)
 
   const action = useAxiosPost('/auth/login', {
     manual: true,
-    onError: (e) : void => {
+    onError: (e): void => {
       const mgs = e
       console.log(mgs)
     },
-    onSuccess: ({data}: {data: SignInResponse} ): void => {
+    onSuccess: ({ data }: { data: SignInResponse }): void => {
       addAccesToken(data?.data?.access_token)
+      addCurrentUser(data?.data?.user)
       navigate("/")
       setTimeout(() => {
         window.location.reload()

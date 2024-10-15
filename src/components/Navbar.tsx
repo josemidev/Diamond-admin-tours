@@ -1,14 +1,11 @@
-import LogOut from "@/util/functions/logOut";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, type MenuProps } from "antd";
 import Logo from '../assets/svg/logoColors.svg';
-import useGetCurrentUser from "@/hooks/useGetCurrentUser";
-import { ICurrentUserProps } from "@/types/userTypes";
+import LogOut from "@/util/functions/logOut";
+import { useCurrentUser } from "@/store/user";
 
 export default function Navbar() {
-  const { data } = useGetCurrentUser()
-  const currentUser: ICurrentUserProps = data || {}
-
+  const currentUser = useCurrentUser.getState().user.username
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -29,7 +26,7 @@ export default function Navbar() {
       <img src={Logo} alt="logo" />
       <section className="flex gap-x-3 items-center">
         <p className="text-diamondBlack1">
-          Hola, <span className="font-semibold">{currentUser?.username}</span>
+          Hola, <span className="font-semibold">{currentUser}</span>
         </p>
         <Dropdown menu={{ items }}>
           <section className="flex justify-center items-center gap-x-2">
@@ -38,7 +35,7 @@ export default function Navbar() {
               className="bg-[#3655A01F] border-[1px] border-[#3655A0]"
             />
             <DownOutlined style={{ color: '#3655A0', fontSize: 14 }} />
-          </ section>
+          </section>
         </Dropdown>
       </section>
     </div>
