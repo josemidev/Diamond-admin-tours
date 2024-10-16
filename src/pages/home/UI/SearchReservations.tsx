@@ -37,11 +37,11 @@ export default function SearchReservations() {
       {isLoading ? (
         <LoadingIndicator />
       ) :
-        <section className="!h-[calc(100vh-250px)] bg-[#F8F8F8]">
+        <section className="!h-[calc(100vh-210px)] bg-[#F8F8F8]">
           <section className="grid grid-cols-2 lg:!grid-cols-3 xl:!grid-cols-4 mr-5 gap-5 overflow-y-auto h-[calc(100vh-250px)] p-5 w-full">
             {allData?.map((item) => {
               return (
-                <ReservationCard key={item._id} data={item} isSearching refetch={refetch} sx={allData.length <= 4 ? 'h-fit min-h-[320px]' : 'h-full min-h-[320px]'} />
+                <ReservationCard key={item._id} data={item} isSearching refetch={refetch} sx={allData.length <= 4 ? '!h-fit !min-h-[320px]' : '!h-full !min-h-[320px]'} />
               );
             })}
           </section>
