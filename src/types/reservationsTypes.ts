@@ -77,4 +77,5 @@ export interface IBookingsValues {
   dateStartingTour: string;
   pickup: string;
   price: number;
+  orderNumber: string;
 }
