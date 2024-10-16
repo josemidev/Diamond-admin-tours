@@ -4,7 +4,7 @@ import { IReservationDrawerProps } from "@/types/reservationsTypes";
 import { Button, Modal, notification } from "antd";
 import React from 'react';
 
-export default function ReservationCancel({ children, data, refetch }: IReservationDrawerProps) {
+export default function ReservationCancel({ children, data, refetch, closeDrawer }: IReservationDrawerProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const showModal = () => {
@@ -32,6 +32,7 @@ export default function ReservationCancel({ children, data, refetch }: IReservat
         placement: 'topRight'
       });
       setIsModalOpen(false);
+      closeDrawer && closeDrawer()
       refetch && refetch()
     }
   })

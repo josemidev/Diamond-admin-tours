@@ -79,7 +79,7 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
             })}
           </section>
           <section className="flex gap-x-4">
-            <ReservationCancel data={data} refetch={refetch}>
+            <ReservationCancel data={data} refetch={refetch} closeDrawer={onClose}>
               <Button
                 className=" w-full hover:!text-diamondBlack1"
                 size="large"
