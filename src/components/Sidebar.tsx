@@ -12,7 +12,7 @@ import LoadingIndicator from "./LoadingIndicator"
 
 export default function Sidebar() {
   const currentUser = useCurrentUser.getState().user
-  const isOwnerOrAdmin = currentUser.roles.includes('owner' || 'admin')
+  const isOwnerOrAdmin = currentUser.roles.includes('owner') || currentUser.roles.includes('admin')
   const [tab, setTab] = useState('all')
 
   if (currentUser.roles.length === 0) {
@@ -40,11 +40,13 @@ export default function Sidebar() {
       label: <p className={`${tab === 'clients' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Clientes</p>,
       children: <Clients />
     },
-    {
-      key: 'tours',
-      label: <p className={`${tab === 'tours' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Tours</p>,
-      children: <Tours />
-    },
+    ...(isOwnerOrAdmin ? [
+      {
+        key: 'tours',
+        label: <p className={`${tab === 'tours' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Tours</p>,
+        children: <Tours />
+      }
+    ] : []),
     ...(isOwnerOrAdmin ? [
       {
         key: 'users',
