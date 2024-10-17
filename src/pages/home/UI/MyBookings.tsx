@@ -1,21 +1,28 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import TagCard from "@/components/Cards/TagCard";
 import ErrorScreen from "@/components/ErrorScreen";
 import ReservationCreate from "@/components/Reservation/ReservationCreate";
 import useGetMyBookings from "@/hooks/useGetMyBookings";
 import { type IBookingsValues } from "@/types/reservationsTypes";
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Table, TableColumnsType } from "antd";
+import { CopyOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, notification, Table, TableColumnsType } from "antd";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 export default function MyBookings() {
   const { data, error, isLoading, refetch } = useGetMyBookings()
-  const [allData, setAllData] = React.useState([])
 
-  React.useEffect(() => {
-    if (data) {
-      setAllData(data)
+  const handleCopy = async (id: string) => {
+    try {
+      await navigator.clipboard.writeText(id);
+      notification.success({
+        message: 'Copiado',
+        description: 'El ID de la reserva ha sido copiado al portapapeles',
+        placement: 'topRight'
+      });
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
     }
-  }, [data])
+  };
 
   const columns: TableColumnsType = [
     {
@@ -42,7 +49,7 @@ export default function MyBookings() {
       key: 'orderNumber',
       rowScope: 'row',
       align: 'end',
-      width: 180
+      width: 160
     },
     {
       title: 'Tour',
@@ -62,26 +69,27 @@ export default function MyBookings() {
       dataIndex: 'numberOfPersons',
       key: 'numberOfPersons',
       align: 'end',
-      width: 100
+      width: 130
     },
     {
       title: 'Precio Final Acordado',
       dataIndex: 'price',
       key: 'price',
       align: 'end',
-      width: 200
+      width: 160
     },
     {
       title: '',
       dataIndex: 'actions',
       key: 'actions',
       align: 'end',
-      width: 100,
+      width: 50,
       rowScope: 'row',
-    }
+      fixed: 'right'
+    },
   ];
 
-  const bookings = useMemo(() => allData?.map((el: IBookingsValues) => {
+  const bookings = useMemo(() => data?.map((el: IBookingsValues) => {
     return {
       key: el?.orderNumber,
       name: el?.name,
@@ -89,7 +97,7 @@ export default function MyBookings() {
       phone: el?.phone,
       orderNumber: el?.orderNumber,
       pickup: el?.pickup,
-      numberOfPersons: el?.numberOfPersons,
+      numberOfPersons: `${el?.numberOfPersons} personas`,
       price: el?.price,
       tour: (
         <TagCard>
@@ -98,9 +106,20 @@ export default function MyBookings() {
           </span>
         </TagCard>
       ),
+      actions: (
+        <Button
+          onClick={() => handleCopy(el?.orderNumber)}
+          icon={<CopyOutlined style={{ color: '#969696', fontSize: 14 }} />}
+          iconPosition='start'
+        >
+        </Button>
+      )
     }
-  }), [allData, refetch])
+  }), [data, refetch])
 
+  if (isLoading) {
+    return <LoadingIndicator />
+  }
 
   if (error) {
     return <ErrorScreen refetch={refetch} />
