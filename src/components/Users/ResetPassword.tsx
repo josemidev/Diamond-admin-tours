@@ -34,8 +34,8 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
         description: data.message,
         placement: 'topRight'
       });
-      setIsModalOpen(false);
       form.resetFields()
+      setIsModalOpen(false);
       refetch && refetch()
     }
   })

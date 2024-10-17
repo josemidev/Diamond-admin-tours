@@ -32,8 +32,8 @@ export default function CreateUser({ children, refetch }: IUserProps) {
         description: data.message,
         placement: 'topRight'
       });
-      setIsModalOpen(false);
       form.resetFields()
+      setIsModalOpen(false);
       refetch && refetch()
     }
   })
