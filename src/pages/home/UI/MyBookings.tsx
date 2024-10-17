@@ -109,8 +109,9 @@ export default function MyBookings() {
       actions: (
         <Button
           onClick={() => handleCopy(el?.orderNumber)}
-          icon={<CopyOutlined style={{ color: '#969696', fontSize: 14 }} />}
+          icon={<CopyOutlined style={{ color: '#969696', fontSize: 12 }} />}
           iconPosition='start'
+          size="small"
         >
         </Button>
       )
