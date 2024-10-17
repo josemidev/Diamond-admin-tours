@@ -1,18 +1,18 @@
 import AllReservation from '@/pages/home/UI/All'
 import AllReservationArchived from '@/pages/home/UI/AllArchived'
 import Clients from "@/pages/home/UI/Clients"
+import MyBookings from "@/pages/home/UI/MyBookings"
 import SearchReservations from '@/pages/home/UI/SearchReservations'
 import Tours from "@/pages/home/UI/Tours"
 import Users from '@/pages/home/UI/Users'
+import { useCurrentUser } from "@/store/user"
 import { Tabs, TabsProps, Tooltip } from "antd"
 import { useState } from 'react'
-import MyBookings from "@/pages/home/UI/MyBookings"
-import { useCurrentUser } from "@/store/user"
 import LoadingIndicator from "./LoadingIndicator"
 
 export default function Sidebar() {
   const currentUser = useCurrentUser.getState().user
-  const isOwnerOrAdmin = currentUser.roles.includes('owner' || 'admin')
+  const isOwnerOrAdmin = currentUser.roles.includes('owner') || currentUser.roles.includes('admin')
   const [tab, setTab] = useState('all')
 
   if (currentUser.roles.length === 0) {
