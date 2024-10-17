@@ -38,12 +38,14 @@ export default function SearchReservations() {
         <LoadingIndicator />
       ) :
         <section className="!h-[calc(100vh-210px)] bg-[#F8F8F8]">
-          <section className="grid grid-cols-2 lg:!grid-cols-3 xl:!grid-cols-4 mr-5 gap-5 overflow-y-auto h-[calc(100vh-250px)] p-5 w-full">
-            {allData?.map((item) => {
-              return (
-                <ReservationCard key={item._id} data={item} isSearching refetch={refetch} sx={allData.length <= 4 ? '!h-fit !min-h-[320px]' : '!h-full !min-h-[320px]'} />
-              );
-            })}
+          <section className="mx-5 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)] py-5 w-fit">
+            <article className="h-fit flex flex-row flex-wrap gap-5">
+              {allData?.map((item) => {
+                return (
+                  <ReservationCard key={item._id} data={item} isSearching refetch={refetch} sx={`!min-h-[320px] !w-fit min-w-[320px] transition-all ease-in-out ${allData.length <= 4 ? '!h-fit' : '!h-full'}`} />
+                );
+              })}
+            </article>
           </section>
         </section>
       }
