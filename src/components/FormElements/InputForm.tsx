@@ -11,7 +11,7 @@ export default function InputForm({ formName, label, type, required = true, ...p
   const typeOfInput = {
     text: <Input placeholder="Escribe aquí" {...props} />,
     password: <Input.Password placeholder="Escribe aquí" {...props} />,
-    number: <Input type='number' min={50} placeholder="Escribe aquí" {...props} />,
+    number: <Input type='number' placeholder="Escribe aquí" {...props} />,
   }
   return (
     <section className="flex flex-col gap-1">
