@@ -5,6 +5,8 @@ import useAxiosPut from "@/hooks/useAxiosPut";
 
 export default function SetPriceTour({ children, name, price, refetch }: ITours) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [form] = Form.useForm();
+
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -30,8 +32,9 @@ export default function SetPriceTour({ children, name, price, refetch }: ITours)
         description: data.message,
         placement: 'topRight'
       });
-      setIsModalOpen(false);
+      form.resetFields()
       refetch && refetch()
+      setIsModalOpen(false);
     }
   })
 
@@ -72,6 +75,7 @@ export default function SetPriceTour({ children, name, price, refetch }: ITours)
             rules={[{ required: true, message: 'Ingresa un precio' }]}
           >
             <Input
+              min={20}
               type="number"
               suffix='USD'
               placeholder='Nuevo Precio'

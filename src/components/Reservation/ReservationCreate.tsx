@@ -91,7 +91,7 @@ export default function ReservationCreate({ children, refetch }: IUserProps) {
             <SelectForm formName="tourName" placeholder="Nombre del tour" options={Tours} allowClear />
             <DatePickerForm formName='dateStartingTour' placeholder='Fecha de inicio del Tour' />
             <InputForm type="text" formName='pickup' placeholder='Lugar de recogida' />
-            <InputForm type="number" formName='price' placeholder='Precio acordado' />
+            <InputForm type="number" formName='price' placeholder='Precio acordado' min={20} />
           </section>
           <section className="flex gap-x-4 mt-5">
             <Button

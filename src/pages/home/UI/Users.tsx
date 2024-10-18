@@ -57,8 +57,8 @@ export default function Users() {
       createdAt: formatGivenDate(el?.createdAt),
       role: (
         <TagCard>
-          <span className="text-diamondBlack1 text-[12px] font-semibold">
-            Agent
+          <span className="text-diamondBlack1 text-[12px] font-semibold capitalize">
+            {el?.higherRole}
           </span>
         </TagCard>
       ),
