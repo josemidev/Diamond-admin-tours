@@ -2,12 +2,13 @@
 import React from 'react';
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { IUserProps } from "@/types/reservationsTypes";
-import { Button, Form, Input, Modal, notification, Select } from "antd";
+import { Button, Form, Modal, notification } from "antd";
 import { useCurrentUser } from "@/store/user";
+import InputForm from "../FormElements/InputForm";
+import SelectForm from "../FormElements/SelectForm";
 
 export default function CreateUser({ children, refetch, }: IUserProps) {
   const currentUser = useCurrentUser.getState().user
-  const isOwner = currentUser.roles.includes('owner') && currentUser.roles.includes('admin')
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [form] = Form.useForm();
@@ -47,7 +48,7 @@ export default function CreateUser({ children, refetch, }: IUserProps) {
       name: values.name,
       password: values.password,
       username: values.username,
-      role: [values.role] //string
+      role: values.role
     })
   }
 
@@ -65,41 +66,18 @@ export default function CreateUser({ children, refetch, }: IUserProps) {
           onFinish={onFinish}
           className="flex flex-col gap-y-[18px]"
         >
-          <Form.Item
-            noStyle
-            rules={[{ required: true, message: 'Please fill with your name' }]}
-            name='name'
-          >
-            <Input placeholder='Nombre de Usuario' />
-          </Form.Item>
-          <Form.Item
-            noStyle
-            rules={[{ required: true, message: 'Please fill with your name' }]}
-            name='username'
-          >
-            <Input placeholder="Username" />
-          </Form.Item>
-          <Form.Item
-            noStyle
-            rules={[{ required: true, message: 'Crete a strong password' }]}
-            name='password'
-          >
-            <Input.Password placeholder='Contraseña' />
-          </Form.Item>
-          <Form.Item
-            name='role'
-            noStyle
-            rules={[{ required: false }]}
-          >
-            <Select
-              className="w-full"
-              options={[
-                { value: 'AGENT', label: 'Agente' },
-                { value: 'ADMIN', label: 'Administrador', disabled: !isOwner }
-              ]}
-              placeholder='Usuario'
-            />
-          </Form.Item>
+          <InputForm type="text" formName='name' placeholder='Nombre de usuario' />
+          <InputForm type="text" formName='username' placeholder='Username' />
+          <InputForm type='password' formName='password' placeholder='Ingresa tu contraseña' />
+          <SelectForm
+            formName='role'
+            placeholder='Usuario'
+            options={[
+              { value: 'AGENT', label: 'Agente' },
+              { value: 'ADMIN', label: 'Administrador', disabled: currentUser?.higherRole !== 'owner' },
+            ]}
+            allowClear
+          />
           <section className="flex gap-x-4 mt-5">
             <Button
               onClick={handleCancel}
