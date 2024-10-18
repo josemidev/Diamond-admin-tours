@@ -3,8 +3,12 @@ import React from 'react';
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { IUserProps } from "@/types/reservationsTypes";
 import { Button, Form, Input, Modal, notification, Select } from "antd";
+import { useCurrentUser } from "@/store/user";
 
-export default function CreateUser({ children, refetch }: IUserProps) {
+export default function CreateUser({ children, refetch, }: IUserProps) {
+  const currentUser = useCurrentUser.getState().user
+  const isOwner = currentUser.roles.includes('owner') && currentUser.roles.includes('admin')
+
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [form] = Form.useForm();
 
@@ -43,7 +47,7 @@ export default function CreateUser({ children, refetch }: IUserProps) {
       name: values.name,
       password: values.password,
       username: values.username,
-      role: ['AGENT']
+      role: [values.role] //string
     })
   }
 
@@ -88,11 +92,10 @@ export default function CreateUser({ children, refetch }: IUserProps) {
             rules={[{ required: false }]}
           >
             <Select
-              disabled
-              defaultValue='AGENT'
               className="w-full"
               options={[
                 { value: 'AGENT', label: 'Agente' },
+                { value: 'ADMIN', label: 'Administrador', disabled: !isOwner }
               ]}
               placeholder='Usuario'
             />
