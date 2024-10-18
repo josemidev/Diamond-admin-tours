@@ -56,6 +56,7 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
               <ReservationDetails item="Telefono" content={data?.phone} />
               <ReservationDetails item="Fecha Inicio Del Tour" content={formatGivenDate(data?.dateStartingTour)} />
               <ReservationDetails item="Numero de personas" content={data?.numberOfPersons} />
+              <ReservationDetails item="Precio Acordado" content={data?.actualPrice} />
             </section>
             <div className="h-[1px] bg-[#D9D9D9] w-full my-5">
             </div>
@@ -66,7 +67,7 @@ export default function ReservationDrawer({ children, data, refetch, isArchived 
               return (
                 <section key={index} className="flex flex-col gap-y-2 mt-3">
                   <section className="flex gap-x-2 items-center text-[#646464]">
-                    <p className="!text-[13px] capitalize">
+                    <p className="!text-[13px]">
                       {item?.description}
                     </p>
                     ·

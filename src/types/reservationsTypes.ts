@@ -11,6 +11,7 @@ export interface Reservation {
   changeHistory: { date: string; description: string }[];
   isArchived: boolean;
   price?: number;
+  actualPrice?: number;
 }
 
 export interface IReservationCardProps {
