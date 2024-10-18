@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 type User = {
   user: {
     name: string;
-    roles: string[];
+    higherRole: string;
     username: string;
   };
   addCurrentUser: (userKey: User | any) => void;
@@ -16,12 +16,12 @@ const useCurrentUser = create(
     (set) => ({
       user: {
         name: "",
-        roles: [],
+        higherRole: "",
         username: "",
       },
-      addCurrentUser: (userKey: User | any) => set(() => ({ user: userKey })),
+      addCurrentUser: (userKey) => set({ user: userKey }),
       removeCurrentUser: () =>
-        set({ user: { name: "", roles: [], username: "" } }),
+        set({ user: { name: "", higherRole: "", username: "" } }),
     }),
     {
       name: "user_role",
