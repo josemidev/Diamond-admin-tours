@@ -11,6 +11,7 @@ export interface Reservation {
   changeHistory: { date: string; description: string }[];
   isArchived: boolean;
   price?: number;
+  actualPrice?: number;
 }
 
 export interface IReservationCardProps {
@@ -58,7 +59,7 @@ export interface IUserProps extends IUser {
 
 export interface IUser {
   createdAt?: string;
-  role?: string;
+  higherRole?: string;
   name?: string;
   _id?: string;
 }

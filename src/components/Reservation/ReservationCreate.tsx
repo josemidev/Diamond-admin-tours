@@ -84,14 +84,14 @@ export default function ReservationCreate({ children, refetch }: IUserProps) {
           onFinish={onFinish}
         >
           <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
-            <InputForm formName='name' placeholder='Nombre del cliente' />
-            <InputForm formName='email' placeholder='Correo del cliente' type="email" />
-            <InputForm formName='phone' placeholder='Número de contacto del cliente' />
-            <InputForm formName='numberOfPersons' placeholder='Número de personas' />
-            <SelectForm formName="tourName" placeholder="Nombre del tour" options={Tours} />
+            <InputForm type="text" formName='name' placeholder='Nombre del cliente' />
+            <InputForm type="text" formName='email' placeholder='Correo del cliente' />
+            <InputForm type="number" formName='phone' placeholder='Número de contacto del cliente' />
+            <InputForm type="number" formName='numberOfPersons' placeholder='Número de personas' />
+            <SelectForm formName="tourName" placeholder="Nombre del tour" options={Tours} allowClear />
             <DatePickerForm formName='dateStartingTour' placeholder='Fecha de inicio del Tour' />
-            <InputForm formName='pickup' placeholder='Lugar de recogida' />
-            <InputForm formName='price' placeholder='Precio acordado' />
+            <InputForm type="text" formName='pickup' placeholder='Lugar de recogida' />
+            <InputForm type="number" formName='price' placeholder='Precio acordado' min={20} />
           </section>
           <section className="flex gap-x-4 mt-5">
             <Button

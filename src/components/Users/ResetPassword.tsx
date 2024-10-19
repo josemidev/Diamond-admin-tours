@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from 'react';
 import { IUserProps } from "@/types/reservationsTypes";
-import { Button, Form, Input, Modal, notification } from "antd";
+import { Button, Form, Modal, notification } from "antd";
 import TagCard from "../Cards/TagCard";
 import { formatGivenDate } from "@/util/utils";
 import useAxiosPut from "@/hooks/useAxiosPut";
+import InputForm from "../FormElements/InputForm";
 
 export default function ResetPassword({ children, data, refetch, id }: IUserProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -34,8 +35,8 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
         description: data.message,
         placement: 'topRight'
       });
-      setIsModalOpen(false);
       form.resetFields()
+      setIsModalOpen(false);
       refetch && refetch()
     }
   })
@@ -64,20 +65,16 @@ export default function ResetPassword({ children, data, refetch, id }: IUserProp
           onFinish={onFinish}
           className="flex flex-col gap-y-[18px] mt-[18px]"
         >
-          <Form.Item
-            noStyle
-            rules={[{ required: true, message: 'Crete a strong password' }]}
-            name='actualPassword'
-          >
-            <Input.Password placeholder='Ingresa tu Contraseña Actual' />
-          </Form.Item>
-          <Form.Item
-            noStyle
-            rules={[{ required: true, message: 'Crete a strong password' }]}
-            name='newPassword'
-          >
-            <Input.Password placeholder='Ingresa una Nueva Contraseña' />
-          </Form.Item>
+          <InputForm
+            type='password'
+            formName='actualPassword'
+            placeholder='Ingresa tu Contraseña Actual'
+          />
+          <InputForm
+            type='password'
+            formName='newPassword'
+            placeholder='Ingresa una Nueva Contraseña'
+          />
           <section className="flex gap-x-4 mt-5">
             <Button
               onClick={handleCancel}
