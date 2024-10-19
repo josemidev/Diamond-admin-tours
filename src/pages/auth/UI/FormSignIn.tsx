@@ -1,11 +1,11 @@
-import { Form } from "antd";
 import InputForm from "@/components/FormElements/InputForm";
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { useAuthorizationState } from "@/store/authorization";
+import { useCurrentUser } from "@/store/user";
 import { type SignInRequest, type SignInResponse } from "@/types/authSignInTypes";
 import { UserAddOutlined } from "@ant-design/icons";
+import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useCurrentUser } from "@/store/user";
 
 export default function FormSignIn() {
   const navigate = useNavigate();
@@ -53,6 +53,7 @@ export default function FormSignIn() {
         >
           <section className="mt-6 flex flex-col gap-[22px]">
             <InputForm
+              type="text"
               label="Usuario"
               formName="username"
               prefix={<UserAddOutlined style={{ color: '#9D9D9D' }} />}
