@@ -3,11 +3,16 @@ import ErrorScreen from "@/components/ErrorScreen";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import { Tours } from "@/constants/data";
 import useGetArchived from "@/hooks/useGetArchived";
-import { groupByStatus } from "@/util/utils";
+import { filterSelect, groupByStatus } from "@/util/utils";
 import { Select } from "antd";
+import { useState } from "react";
 
 export default function AllReservationArchived() {
   const { data, error, isLoading, refetch } = useGetArchived();
+  const [selectedTour, setSelectedTour] = useState('');
+  const handleSelectChange = (value: string) => {
+    setSelectedTour(value);
+  };
 
   const groupedData = groupByStatus(data || []);
   const statusMap: { [key: string]: { bgColor: string; statusFormatted: string; textColor: string } } = {
@@ -46,24 +51,30 @@ export default function AllReservationArchived() {
         <p className="capitalize text-diamondBlack1 ml-1 mt-3 mb-2">
           Filtra por:
         </p>
-        <section className="flex gap-x-6">
-          <Select options={Tours} className="!h-[32px] !w-[280px]" placeholder='Nombre del tour' />
-          {/* <Select className="!h-[32px]" placeholder='Fecha de solicitud' /> */}
-        </section>
+        <Select
+          showSearch
+          filterOption={filterSelect}
+          onChange={handleSelectChange}
+          options={Tours}
+          className="!h-[32px] !w-[280px]"
+          placeholder='Nombre del tour'
+          allowClear
+        />
       </section>
       {isLoading ? (
         <LoadingIndicator />
       ) :
-        <div className="grid grid-flow-col mx-5 gap-5 mt-10 max-w-[1400px] overflow-y-auto h-[calc(100vh-250px)] overflow-x-scroll">
+        <div className="grid grid-flow-col mx-5 gap-5 mt-10 max-w-[1200px] overflow-y-auto h-[calc(100vh-250px)] overflow-x-auto">
           {['unrevised', 'review', 'approved', 'rejected',].map((statusOrder) => {
             const { bgColor, statusFormatted, textColor } = statusMap[statusOrder] || {};
+            const filteredData = groupedData[statusOrder]?.filter((item) => !selectedTour || item.tourName === selectedTour);
             return (
-              <section key={statusOrder} className={`rounded-[20px] p-3 pb-6 min-w-[280px] ${bgColor}`}>
+              <section key={statusOrder} className={`rounded-[20px] p-3 pb-6 min-w-[300px] max-w-[320px] ${bgColor}`}>
                 <h1 className={`font-semibold text-[15px] capitalize ${textColor} mb-6`}>
-                  {statusFormatted} ({groupedData[statusOrder]?.length ?? 0})
+                  {statusFormatted} ({filteredData?.length ?? 0})
                 </h1>
-                {groupedData[statusOrder]?.map((item) => (
-                  <ReservationCard key={item._id} data={item} sx="mb-5" refetch={refetch} />
+                {filteredData?.map((item) => (
+                  <ReservationCard key={item._id} data={item} sx="mb-5 max-w-[280px]" refetch={refetch} />
                 ))}
               </section>
             );
