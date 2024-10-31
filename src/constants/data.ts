@@ -1,46 +1,46 @@
 export const Tours = [
   {
     label: "Coco Bongo",
-    value: "COCO_BONGO",
+    value: "Coco Bongo",
   },
   {
     label: "Isla Saona",
-    value: "ISLA_SAONA",
+    value: "Isla Saona",
   },
   {
     label: "Punta Cana Tour Buggy",
-    value: "PUNTA_CANA_TOUR_BUGGY",
+    value: "Punta Cana Tour Buggy",
   },
   {
     label: "Monkeyland Tour",
-    value: "MONKEYLAND_TOUR",
+    value: "Monkeyland Tour",
   },
   {
     label: "Supreme Safari Tour",
-    value: "SUPREME_SAFARI_TOUR",
+    value: "Supreme Safari Tour",
   },
   {
     label: "Punta Cana Tour Higuey",
-    value: "PUNTA_CANA_TOUR_HIGUEY",
+    value: "Punta Cana Tour Higuey",
   },
   {
     label: "Punta Cana Tour Santo Domingo",
-    value: "PUNTA_CANA_TOUR_SANTO_DOMINGO",
+    value: "Punta Cana Tour Santo Domingo",
   },
   {
     label: "Tour Horse",
-    value: "TOUR_HORSE",
+    value: "Tour Horse",
   },
   {
     label: "Punta Cana Tour Zip Line Park",
-    value: "PUNTA_CANA_TOUR_ZIP_LINE_PARK",
+    value: "Punta Cana Tour Zip Line Park",
   },
   {
     label: "La Hacienda Park",
-    value: "LA_HACIENDA_PARK",
+    value: "La Hacienda Park",
   },
   {
     label: "Punta Cana Tour Party Boat",
-    value: "PARTY_BOAT_TOUR",
+    value: "Punta Cana Tour Party Boat",
   },
 ];
