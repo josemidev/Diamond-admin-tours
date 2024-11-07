@@ -58,7 +58,7 @@ export default function Sidebar() {
     {
       key: 'my_bookings',
       label: <p className={`${tab === 'my_bookings' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>{(role === 'owner' || role === 'admin') ? "Reservas Agentes" : "Mis Reservas"}</p>,
-      children: <MyBookings />
+      children: <MyBookings role={role} />
     },
     {
       key: 'metrics',
