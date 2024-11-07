@@ -25,3 +25,10 @@ export function formatGivenDate(inputDate: any) {
   const formattedDate = new Date(inputDate).toLocaleDateString('en-US', options)
   return formattedDate
 }
+
+export function filterSelect(input: string, option: any) {
+  return (
+    option?.label.toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+    option?.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+  )
+}

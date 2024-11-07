@@ -1,20 +1,21 @@
+import React from "react";
 import { InitialStatus } from "@/components/Cards/StatusCard";
 import ErrorScreen from "@/components/ErrorScreen";
 import useGetClients from "@/hooks/useGetClient";
 import { Reservation } from "@/types/reservationsTypes";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, Table } from "antd";
-import React, { useMemo } from "react";
 
 export default function Clients() {
   const { data, error, isLoading, refetch } = useGetClients()
-  const [allData, setAllData] = React.useState<Reservation[]>([])
+  const [text, setText] = React.useState('')
+  const [filteredData, setFilteredData] = React.useState<Reservation[]>([])
 
   React.useEffect(() => {
-    if (data) {
-      setAllData(data)
+    if (data && !isLoading) {
+      setFilteredData(data)
     }
-  }, [data])
+  }, [data, isLoading])
 
   const columns = [
     {
@@ -44,7 +45,20 @@ export default function Clients() {
     },
   ];
 
-  const clients = useMemo(() => allData?.map((el) => {
+  const searchClients = (text: string): void => {
+    if (text.length > 0) {
+      const newData = data?.filter((item: any) => {
+        const itemData = `${item?.orderNumber?.toUpperCase()}`
+        const itemText = text.toUpperCase()
+        return itemData.indexOf(itemText) > -1
+      })
+      setFilteredData(newData)
+    } else {
+      setFilteredData(data)
+    }
+  }
+
+  const clients = React.useMemo(() => filteredData?.map((el) => {
     return {
       key: el.orderNumber,
       id: el.orderNumber,
@@ -53,7 +67,8 @@ export default function Clients() {
       phone: el.phone,
       status: (<InitialStatus statusOrder={el.statusOrder} />),
     }
-  }), [allData])
+  }), [filteredData])
+
 
   if (error) {
     return <ErrorScreen refetch={refetch} />
@@ -65,9 +80,17 @@ export default function Clients() {
         <h1 className="text-[28px] font-bold text-[#000000] mt-8 capitalize leading-none">
           Clientes
         </h1>
-        <section className="flex gap-x-4 mt-4">
-          <Input className="!h-[32px] !w-fit" suffix={<SearchOutlined className="text-[14px] !w-fit" />} placeholder='Buscar Reserva' />
-          {/* <Select className="!h-[32px]" placeholder='Fecha de solicitud' /> */}
+        <section className="mt-4">
+          <Input
+            value={text}
+            className="!h-[32px] !w-fit"
+            suffix={<SearchOutlined className="text-[14px] !w-fit" />}
+            placeholder='Buscar Reserva'
+            onChange={(e) => {
+              searchClients(e.target.value)
+              setText(e.target.value)
+            }}
+          />
         </section>
       </section>
       <section className="mt-5 pb-5 !overflow-y-auto !h-[calc(100vh-250px)]">
