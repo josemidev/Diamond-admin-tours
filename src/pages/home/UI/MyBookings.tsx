@@ -1,16 +1,17 @@
-import { useMemo } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
 import TagCard from "@/components/Cards/TagCard";
 import ErrorScreen from "@/components/ErrorScreen";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import ReservationCreate from "@/components/Reservation/ReservationCreate";
 import useGetMyBookings from "@/hooks/useGetMyBookings";
 import { type IBookingsValues } from "@/types/reservationsTypes";
 import { CopyOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, notification, Table, TableColumnsType } from "antd";
-import LoadingIndicator from "@/components/LoadingIndicator";
+import { useMemo } from "react";
 
-export default function MyBookings() {
+export default function MyBookings({role}: {role: string}): JSX.Element {
   const { data, error, isLoading, refetch } = useGetMyBookings()
-
+  
   const handleCopy = async (id: string) => {
     try {
       await navigator.clipboard.writeText(id);
@@ -131,7 +132,7 @@ export default function MyBookings() {
       <section className="sticky top-0 w-full z-10 bg-white border-b px-5 pt-2 pb-6">
         <section className="flex justify-between items-center w-full mt-8">
           <h1 className="text-[28px] font-bold text-[#000000] capitalize leading-none">
-            Mis Reservas
+          {(role === 'owner' || role === 'admin') ? "Todas Las Reservas" : "Mis Reservas"}
           </h1>
           <ReservationCreate refetch={refetch}>
             <Button
