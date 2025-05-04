@@ -4,6 +4,7 @@ import Clients from "@/pages/home/UI/Clients"
 import MyBookings from "@/pages/home/UI/MyBookings"
 import SearchReservations from '@/pages/home/UI/SearchReservations'
 import Tours from "@/pages/home/UI/Tours"
+import MyTransfers from '@/pages/home/UI/MyTransfers'
 import Users from '@/pages/home/UI/Users'
 import { useCurrentUser } from "@/store/user"
 import { Tabs, TabsProps, Tooltip } from "antd"
@@ -59,6 +60,11 @@ export default function Sidebar() {
       key: 'my_bookings',
       label: <p className={`${tab === 'my_bookings' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>{(role === 'owner' || role === 'admin') ? "Reservas Agentes" : "Mis Reservas"}</p>,
       children: <MyBookings role={role} />
+    },
+    {
+      key: 'my_transfers',
+      label: <p className={`${tab === 'my_transfers' ? 'font-bold text-diamondPrimary' : 'font-normal text-diamondBlack2'}`}>Mis Transfers</p>,
+      children: <MyTransfers />
     },
     {
       key: 'metrics',
