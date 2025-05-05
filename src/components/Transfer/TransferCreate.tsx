@@ -87,7 +87,7 @@ export default function ReservationCreate({ children }: IUserProps) {
                         </Form>
                     </section>
                 ) : (
-                    <Transfer modal={isModalOpen} setModal={setIsModalOpen} />
+                    <Transfer value={value} modal={isModalOpen} setModal={setIsModalOpen} />
                 )}
             </Modal>
         </>
