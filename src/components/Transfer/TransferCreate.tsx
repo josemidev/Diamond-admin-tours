@@ -46,7 +46,7 @@ export default function ReservationCreate({ children }: IUserProps) {
             <section onClick={showModal}>
                 {children}
             </section>
-            <Modal open={isModalOpen} width={400} onCancel={handleCancel} footer closable={false}>
+            <Modal open={isModalOpen} width={500} onCancel={handleCancel} footer closable={false}>
                 {select === false ? (
                     <section>
                         <section className="mt-3 mb-5">
