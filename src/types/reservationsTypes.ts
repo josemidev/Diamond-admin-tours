@@ -36,7 +36,9 @@ export interface IReservationDrawerProps {
 export interface IStatusCardProps {
   statusOrder: "unrevised" | "review" | "approved" | "rejected";
 }
-
+export interface TypeReservationProps {
+  type: 1 | 2 | 3;
+}
 export interface ITours {
   children?: React.ReactNode;
   name: string;

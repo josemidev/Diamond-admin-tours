@@ -2,6 +2,7 @@ import { InitialStatus } from "@/components/Cards/StatusCard";
 import { PlusOutlined, CopyOutlined } from "@ant-design/icons";
 import { Button, notification, Table, TableColumnsType } from "antd";
 import TransferCreate from "@/components/Transfer/TransferCreate";
+import { IconTypeReservation } from "@/components/Transfer/TypeReservationIcon";
 
 export default function MyTransfers(): JSX.Element {
     const handleCopy = async (id: string) => {
@@ -72,6 +73,7 @@ export default function MyTransfers(): JSX.Element {
             title: 'T. Reserva',
             dataIndex: 'typeReservation',
             key: 'typeReservation',
+            render: (typeReservation) => (<IconTypeReservation type={typeReservation} />)
         },
     ];
 
@@ -85,7 +87,7 @@ export default function MyTransfers(): JSX.Element {
             phone: '+57 300 1234567',
             numberOfOrder: '1153993901',
             status: 'unrevised',
-            typeReservation: 0,
+            typeReservation: 1,
         },
         {
             key: '2',
@@ -96,7 +98,7 @@ export default function MyTransfers(): JSX.Element {
             phone: '+57 300 456 5678',
             numberOfOrder: '434425',
             status: 'review',
-            typeReservation: 1,
+            typeReservation: 2,
         },
         {
             key: '3',
@@ -107,7 +109,7 @@ export default function MyTransfers(): JSX.Element {
             phone: '+57 300 456 5678',
             numberOfOrder: '435153',
             status: 'approved',
-            typeReservation: 1,
+            typeReservation: 3,
         },
         {
             key: '4',
@@ -118,7 +120,7 @@ export default function MyTransfers(): JSX.Element {
             phone: '+57 300 456 5678',
             numberOfOrder: '435231',
             status: 'rejected',
-            typeReservation: 1,
+            typeReservation: 3,
         },
     ];
 
