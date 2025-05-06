@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Select, theme, Steps, message, TimePicker, Radio, RadioChangeEvent } from "antd";
+import { Form, Input, Button, Select, Steps, message, TimePicker, Radio, RadioChangeEvent } from "antd";
 import DatePickerForm from '../FormElements/DatePickerForm';
 
 type TransferProps = {
@@ -12,8 +12,7 @@ export default function Transfer({ setModal, value }: TransferProps): JSX.Elemen
     const handleCancel = () => {
         setModal(false);
     };
-
-    const { token } = theme.useToken();
+    
     const [current, setCurrent] = useState(0);
     const [valuePay, setValuePay] = useState(0);
 

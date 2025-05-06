@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IUserProps } from "@/types/reservationsTypes";
 import { Button, Form, Modal, Grid, Radio, RadioChangeEvent } from "antd";
-import Transfer from './Transfer';
+import RegisterTransfer from './RegisterTransfer';
 
 const { useBreakpoint } = Grid
 
@@ -87,7 +87,7 @@ export default function ReservationCreate({ children }: IUserProps) {
                         </Form>
                     </section>
                 ) : (
-                    <Transfer value={value} modal={isModalOpen} setModal={setIsModalOpen} />
+                    <RegisterTransfer value={value} modal={isModalOpen} setModal={setIsModalOpen} />
                 )}
             </Modal>
         </>
